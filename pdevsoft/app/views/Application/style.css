@@ -1,0 +1,142 @@
+#header {
+margin-left: 240px;
+position: relative;
+width: 850px;
+background-color:##CAE1FF;
+text-align:center;
+height:80px;
+}
+
+body {
+background-color:#CAE1FF;
+font-family:arial;
+}
+
+#content {
+/*border:1px solid black*/;
+margin-left: 240px;
+position: relative;
+width: 850px;
+height:650px;
+}
+
+ul {
+list-style:none;
+}
+
+#menu {
+
+/*border:1px solid black;*/
+height:30px;
+/*width:850px;
+margin-left:240px;*/
+width:1340px;
+position:relative;
+background-color:#CDCDB4;
+}
+
+#menu ul {
+    float: left;
+    font-weight: bold;
+    list-style: none outside none;
+    margin: 0;
+    padding-left: 350px;
+    padding-top: 5px;
+    width: 100%;
+}
+
+/*#menu ul {
+			padding-left:155px;
+			padding-top:5px;
+			margin:0px;
+			float: left;
+			width: 100%;
+			list-style:none;
+			font-weight:bold;
+		}
+*/
+		#menu ul li { 
+			/*display: inline;*/ 
+			padding-left:20px;
+		}
+
+		#menu ul li:hover{ 
+			color:#FFFFFF;
+		}
+		
+		#med, #paciente, #exame, #laudo, #sobre, #contato {
+			display:inline;
+		}
+		
+
+#menu2 {
+float:left;
+/*border:1px solid;*/
+width:200px;
+height:650px;
+
+}
+
+#principal {
+/*border:1px solid;*/
+height:650px;
+width:650px;
+float:right;
+}
+
+#menu2 ul a{
+color:#000000;
+font-size:12px;
+}
+
+#cadastro {
+
+font-size:12px;
+}
+
+table {
+margin-top:40px;
+margin-left:50px;
+text-align:right;
+}
+
+#footer {
+text-align:center;
+padding-bottom:5px;
+width:1340px;
+height:20px;
+/*margin-left: 240px;*/
+background-color:#CDCDB4;
+}
+
+
+#interno {
+position:relative;
+left:-350px;
+
+}
+
+a:link{
+color:#000000;
+}
+
+#interno2 {
+position:relative;
+left:-262px;
+}
+
+#interno3 {
+position:relative;
+left:-162px;
+}
+
+#interno4 {
+position:relative;
+left:-77px;
+}
+
+#interno5 {
+position:relative;
+left:7px;
+}
+

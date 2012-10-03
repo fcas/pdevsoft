@@ -1,0 +1,136 @@
+<!--#{extends 'main.html' /}
+#{set title:'Cadastro de Pacientes' /}
+-->
+<head>
+<link rel="stylesheet" type="text/css" href="cadastrop.css">
+<script type="text/javascript" src="jquery.js"></script> 
+<script type="text/javascript" src="slider.js"></script> 
+<script type="text/javascript" src="cadastro.js"></script>
+<meta HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=UTF-8">
+</head>
+
+<div id="header">
+<h1 id="m1">MedLab</h1>
+</div>
+
+<div id="menu">
+		<ul>
+			<li id="med">Medicos
+			<ul id="interno"><li><a href="http://localhost:9000/Application/createMedlab"> Cadastrar Médico de Laboratório </a></li>
+<li id="link2"><a like href="http://localhost:9000/Application/createMedreq"> Cadastrar Médico Requisitante </a></li>
+			</ul></li>
+			<li id="paciente">Pacientes
+			<ul id="interno2"><li><a like href="http://localhost:9000/Application/createPaciente"> Cadastrar paciente </a></li>
+			</ul></li>
+			<li id="exame">Exames
+			<ul id="interno3">
+<li id="link4"><a like href="http://localhost:9000/Application/createExame"> Cadastrar exame </a></li>
+			</ul></li>
+			<li id="laudo">Laudos
+			<ul id="interno4">
+<li id="link5"><a like href="http://localhost:9000/Application/createLaudo"> Cadastrar laudo </a></li>
+			</ul></li>
+			<li id="sobre">Sobre
+			<ul id="interno5"><li><a href="#">Quem somos nós</a></li>
+			<li><a href="#">Localização</a></li>
+			</ul></li>
+			<li id="contato">Contato</li>
+			<li id="contato">Ajuda</li>
+		</ul>
+</div>
+
+
+<div id="content">
+	<div id="principal">
+		<h1>Cadastrar exame</h1>
+	<form action="@{Application.doCreateExame()}" method="POST">
+		<table>
+		<tr>
+			<td><label>ID: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>ID Material: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID_material"/>
+				</p></td>
+		</tr>
+			<tr>
+			<td><label>Situação: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.situacao"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Data da requisição: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.datarec"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Data da entrega: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.dataentrega"/>
+				</p></td>
+		</tr><tr>
+			<td><label>ID Paciente: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID_paciente"/>
+				</p></td>
+		</tr><tr>
+			<td><label>CRM Requisitante: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.CRMR"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>CRM Médico do Laboratório: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.CRML"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Resultado: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.datarec"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Analise Macro: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.analise_macro"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Análise Micro: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.analise_micro"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.observacoes"/>
+				</p></td>
+		</tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="submit" name="create" value="Salvar dados"/>
+			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+</form>
+</div>
+<div id="menu2">
+	
+</div>
+
+
+</div>
+
+<div id="footer">
+ © Copyright AndFeLa 2012
+</div>
+

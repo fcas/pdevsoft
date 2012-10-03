@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Médico Requisitante' /}
+<div id="content">
+<h1>Cadastro de Médico Requisitante</h1>
+
+<div id="createItemForm">
+<form action="@{Application.doCreateMedreq()}" method="POST">
+
+<p class="field">
+<label>CRM: </label>
+<input type="text" name="medicoreq.CRMR"/>
+</p>
+
+<p class="field">
+<label>Nome: </label>
+<input type="text" name="medicoreq.nome"/>
+</p>
+
+<p class="field">
+<label>Telefone: </label>
+<input type="text" name="medicoreq.telefone"/>
+</p>
+
+<p class="field">
+<label>E-mail: </label>
+<input type="text" name="medicoreq.email"/>
+</p>
+
+<input type="submit" name="create" value="Salvar dados"/>
+<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
+</form>
+</div>
+</div>

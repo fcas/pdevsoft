@@ -1,0 +1,43 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Laudo' /}
+<div id="content">
+<h1>Cadastro de Laudo</h1>
+
+<div id="createItemForm">
+<form action="@{Application.doCreateLaudo()}" method="POST">
+
+<p class="field">
+<label>ID Laudo: </label>
+<input type="text" name="laudo.ID_laudo"/>
+</p>
+
+<p class="field">
+<label>Analise Macro: </label>
+<input type="text" name="laudo.analise_macro"/>
+</p>
+
+<p class="field">
+<label>Analise Micro: </label>
+<input type="text" name="laudo.analise_micro"/>
+</p>
+
+<p class="field">
+<label>Resultado: </label>
+<input type="text" name="laudo.resultado"/>
+</p>
+
+<p class="field">
+<label>ID Paciente: </label>
+<input type="text" name="laudo.ID_paciente"/>
+</p>
+
+<p class="field">
+<label>CRM Laudo: </label>
+<input type="text" name="laudo.CRML"/>
+</p>
+
+<input type="submit" name="create" value="Salvar dados"/>
+<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
+</form>
+</div>
+</div>
