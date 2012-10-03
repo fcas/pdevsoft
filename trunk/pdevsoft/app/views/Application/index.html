@@ -1,0 +1,73 @@
+<!--#{extends 'main.html' /}
+#{set title:'Cadastro de Pacientes' /}
+-->
+<head>
+<link rel="stylesheet" type="text/css" href="arquivo.css">
+<script type="text/javascript" src="jquery.js"></script> 
+<script type="text/javascript" src="cadastro.js"></script>
+<meta HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=UTF-8">
+</head>
+
+<div id="header">
+<h1 id="m1">MedLab</h1>
+</div>
+
+<div id="menu">
+		<ul>
+			<li id="med">Medicos
+			<ul id="interno"><li><a href="http://localhost:9000/Application/createMedlab"> Cadastrar Médico de Laboratório </a></li>
+<li id="link2"><a like href="http://localhost:9000/Application/createMedreq"> Cadastrar Médico Requisitante </a></li>
+			</ul></li>
+			<li id="paciente">Pacientes
+			<ul id="interno2"><li><a like href="http://localhost:9000/Application/createPaciente"> Cadastrar paciente </a></li>
+<li id="link2"><a like href="http://localhost:9000/Application/showPaciente"> Listar pacientes </a></li>
+<li id="link2"><a like href="http://localhost:9000/Application/deletePaciente"> Remover pacientes </a></li>
+			</ul></li>
+			<li id="exame">Exames
+			<ul id="interno3">
+<li id="link4"><a like href="http://localhost:9000/Application/createExame"> Cadastrar exame </a></li>
+			</ul></li>
+			<li id="laudo">Laudos
+			<ul id="interno4">
+<li id="link5"><a like href="http://localhost:9000/Application/createLaudo"> Cadastrar laudo </a></li>
+			</ul></li>
+			<li id="sobre">Sobre
+			<ul id="interno5"><li><a href="#">Quem somos nós</a></li>
+			<li><a href="#">Localização</a></li>
+			</ul></li>
+			<li id="contato">Contato</li>
+			<li id="contato">Ajuda</li>
+		</ul>
+</div>
+
+
+<div id="content">
+	<div id="principal">
+		
+		<div id="authentication">
+<form action="@{Application.login()}" method="POST">
+			<fieldset><legend>Login</legend>
+			<table>
+		<tr>
+			<td>Usuário</td><td><input class="texto" type="text" name="usuarios.username"/></br>
+</td></tr>
+		<tr><td>Senha</td> <td> <input class="texto" type="password" name="usuarios.password"/></td></tr>
+<tr><td></td><td><input class="button" type="submit" value="Entrar"></td></tr></table>
+
+<a id="cadastro" href="http://localhost:9000/Application/createUser"> Clique aqui para fazer o cadastro</a>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="menu2">
+	
+</div>
+
+
+</div>
+
+<div id="footer">
+ © Copyright AndFeLa 2012
+</div>
+

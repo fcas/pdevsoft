@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'ePlay Auctions - Create a new Item Listing' /}
+#{set 'moreStyles'}
+<link rel="stylesheet" href="@{'/public/stylesheets/style.css'}">
+#{/set}
+<div id="content">
+
+<h1>Pacientes cadastrados no sistema:</h1>
+
+<p>| ID | Nome | Endereco | E-mail | Telefone | Sexo | Data Nascimento | Estado Civil | CPF | RG | Observações |
+ </p>
+
+#{list items: list_paciente, as : 'p'}
+
+<p> | ${p.ID} | | ${p.nome} | ${p.endereco} | ${p.email} | ${p.telefone} | ${p.sexo} | ${p.datanasc} | ${p.estadocivil} | ${p.cpf} | ${p.rg} | ${p.observacoes} | </br> </p>
+
+#{/list}
+
+<p>
+<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
