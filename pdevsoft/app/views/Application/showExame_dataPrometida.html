@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<link rel="stylesheet"media="screen" href="style.css">
+<script type="text/javascript" src="jquery.js"></script> 
+
+<script type="text/javascript" src="style.js"></script>
+<meta HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=UTF-8">
+</head>
+
+<body>
+	
+	<div id="header">
+<h1 id="m1">MedLab</h1>
+</div>
+
+<div id="menu">
+		<ul>
+			<li id="med">Medicos</li>
+			<li id="paciente">Pacientes</li>
+			<li id="exame">Exames</li>
+			<li id="sobre">Sobre</li>
+			<li id="contato">Contato</li>
+			<li id="contato">Ajuda</li>
+		</ul>
+</div>
+<div id="content">
+	<div id="principal">
+		<h1>Exames</h1>
+	#{list items: list_exame, as : 'p'}
+		<table>
+		<tr>
+			<td><label>ID: </label></td>
+			<td>${p.ID}</td>
+		</tr>
+		<tr>
+			<td><label>Situacao: </label></td>
+			<td>${p.situacao}</td>
+		</tr>
+		<tr>
+			<td><label>Data da requisição: </label></td>
+			<td>${p.datareq}</td>
+		</tr><tr>
+			<td><label>Data da entrega: </label></td>
+			<td>${p.dataentrega}</td>
+		</tr><tr>
+			<td><label>ID Paciente: </label></td>
+			<td>${p.ID_paciente}</td>
+		</tr><tr>
+			<td><label>CRM do Médico Requisitante: </label></td>
+			<td>${p.CRMR}</td>
+		</tr><tr>
+			<td><label>CRM do Médico do laboratório: </label></td>
+			<td>${p.CRML}</td>
+		</tr><tr>
+			<td><label>Resultado: </label></td>
+			<td> ${p.resultado}</td>
+		</tr><tr>
+			<td><label>Análise macroscópica: </label></td>
+			<td>${p.analise_macro}</td>
+		</tr><tr>
+			<td><label>Análise microscópica: </label></td>
+			<td>${p.analise_micro}</td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td>${p.observacoes}</td>
+		</tr>
+		#{/list}
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="submit" name="create" value="Salvar dados"/>
+			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+</form>
+</div>
+
+<div id="menu2">
+<ul id="interno"><li><a href="http://localhost:9000/Application/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
+<li id="link2"><a like href="http://localhost:9000/Application/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
+<li>
+<a like href="http://localhost:9000/Application/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br></ul>
+<ul id="interno2"><li><a like href="http://localhost:9000/Application/createPaciente"> Cadastrar paciente </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarPacienteRG"> Buscar paciente por RG </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarPacienteCPF"> Buscar paciente por CPF </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarEmailPaciente"> Buscar email do paciente </a></li></br>
+</ul>
+<ul id="interno3"><li id="link4"><a like href="http://localhost:9000/Application/createExame"> Cadastrar exame </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarExameID"> Buscar exame por ID </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarexameDataEntrega"> Buscar exame por data </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarExameSituacao"> Buscar exame por situação </a></li></br>
+<li><a like href="http://localhost:9000/Application/showExamesEntregues"> Visualizar exames entregues </a></li></br>
+<li><a like href="http://localhost:9000/Application/showExamesNaoEntregues"> Visualizar exames não entregues </a></li></br>
+<li><a like href="http://localhost:9000/Application/showUltimosExames"> Visualizar os ultimos 3 exames cadastrados </a></li></br>
+</ul>
+<ul id="interno5"><li><a href="#">Quem somos nós</a></li></br>
+			<li><a href="#">Localização</a></li>
+			</ul>
+</div>
+
+</body>
+</html>

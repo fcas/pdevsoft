@@ -44,72 +44,77 @@ CONTENT="text/html; charset=UTF-8">
 <div id="content">
 	<div id="principal">
 </br> </br> 
-		<h1>Cadastrar paciente</h1>
-	<form action="@{DaoPaciente.doCreatePaciente()}" method="POST">
+		<h1>Editar Exame</h1>
+	<form action="@{Application.doEditExame()}" method="POST">
 		<table>
 		<tr>
-			<td><label>ID: </label></td>
+			<td><label>Informe o ID do exame</br> a ser modificado:</label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.ID"/>
+				<input type="text" name="exame.ID"/>
+				</p><br><br></td>
+		</tr>
+		<tr>
+			<td><label>ID do material: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID_material"/>
 				</p></td>
 		</tr>
 		<tr>
-			<td><label>Nome: </label></td>
+			<td><label>Situação: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.nome"/>
-				</p></td>
-		</tr>
-		<tr>
-			<td><label>Endereço: </label></td>
-			<td><p class="field">
-				<input type="text" name="paciente.endereco"/>
+				<input type="text" name="exame.situacao"/>
 				</p></td>
 		</tr><tr>
-			<td><label>Email: </label></td>
+			<td><label>Data de Recebimento: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.email"/>
+				<input type="text" name="exame.datarec"/>
 				</p></td>
 		</tr><tr>
-			<td><label>Telefone: </label></td>
+			<td><label>Data de Entrega: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.telefone"/>
+				<input type="text" name="exame.dataentrega"/>
 				</p></td>
 		</tr><tr>
-			<td><label>Data de nascimento: </label></td>
+			<td><label>ID do Paciente: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.datanasc"/>
+				<input type="text" name="exame.ID_paciente"/>
 				</p></td>
 		</tr><tr>
-			<td><label>Estado civil: </label></td>
+			<td><label>CRM Médico Requisitante: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.estadocivil"/>
+				<input type="text" name="exame.CRMR"/>
 				</p></td>
 		</tr><tr>
-			<td><label>Sexo: </label></td>
+			<td><label>CRM Médico Laudista: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.sexo"/>
+				<input type="text" name="exame.CRML"/>
 				</p></td>
 		</tr><tr>
-			<td><label>CPF: </label></td>
+			<td><label>Resultado: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.cpf"/>
+				<input type="text" name="exame.Resultado"/>
 				</p></td>
 		</tr><tr>
-			<td><label>RG: </label></td>
+			<td><label>Análise Macroscópica: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.rg"/>
+				<input type="text" name="exame.Analise_macro"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Análise Microscópica: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.Analise_micro"/>
 				</p></td>
 		</tr><tr>
 			<td><label>Observações: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.observacoes"/>
+				<input type="text" name="exame.observacoes"/>
 				</p></td>
 		</tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Salvar dados"/>
+			<td></td><td><input type="submit" name="create" value="Editar Exame"/>
 			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>

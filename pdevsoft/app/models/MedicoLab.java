@@ -2,12 +2,18 @@ package models;
 
 import play.db.jpa.Model;
 import javax.persistence.*;
+import play.data.validation.Email;
 
 import java.util.*;
 
 public class MedicoLab extends Model {
 	
-	public int CRML; 
+	public int CRML;
+	public String nome;
+	public @Email String email; 
+	public String telefone; 
+
+	//getters and setters
 	public int getCRML() {
 		return CRML;
 	}
@@ -32,8 +38,4 @@ public class MedicoLab extends Model {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String nome;
-	public String email; 
-	public String telefone; 
-
 }

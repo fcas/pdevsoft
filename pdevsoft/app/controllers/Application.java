@@ -40,27 +40,43 @@ public class Application extends Controller {
 
 	}
 
-	public static void logout() {
-		session.remove("login");
-		index();
+	@Before(unless = {"index", "doCreateUser", "login"})
+	static void checkAutenticacao() throws SQLException {
+		if (!session.contains("login")) {
+			index();
+		}
 	}
-
-
-	public static void doCreateUser(Usuarios usuarios) {
-
+	
+	public static void login (Usuarios usuarios) {
+		
 		conectar();
-		String insert_usuario = "INSERT INTO Usuarios VALUES ('"
-				+ usuarios.username + "','" + usuarios.password + "')";
+		ResultSet rs = null;
+		System.out.println(usuarios.username + ", " + usuarios.password);
 		try {
-			comando.executeUpdate(insert_usuario);
+			rs = comando.executeQuery("SELECT * FROM Usuarios WHERE username = '"
+					+ usuarios.username + "' AND password = '" + usuarios.password
+					+ "'");
+
+			
+			if (rs.next()) {
+				session.put("login", "ola");
+				System.out.println("ENTROU");
+			}
+			bemVindo();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 	
-	
+	public static void bemVindo () {
+		render();
+	}
+
+	public static void logout() {
+		session.remove("login");
+		index();
+	}
 
 	public static void showExame() {
 
@@ -70,7 +86,7 @@ public class Application extends Controller {
 
 		try {
 			result = comando
-					.executeQuery("SELECT * FROM Exame ORDER BY dataentrega");
+					.executeQuery("SELECT * FROM ExameLaudo ORDER BY dataentrega");
 			while (result.next()) {
 				Exame le = new Exame();
 				le.setID(result.getInt("ID"));
@@ -97,31 +113,6 @@ public class Application extends Controller {
 		render(list_exame);
 
 	}
-
-	// public static void showLaudo() {
-	// conectar();
-	// List<Laudo> list_laudo = new ArrayList<Laudo>();
-	// ResultSet result;
-	//
-	// try {
-	// result = comando.executeQuery("SELECT * FROM MedicoLab ORDER BY nome");
-	// while (result.next()) {
-	// Laudo le = new Laudo();
-	// le.setID(result.getInt("ID"));
-	// le.setAnalise_macro(result.getString("analise_macro"));
-	// le.setAnalise_micro(result.getString("analise_micro"));
-	// le.setResultado(result.getString("resultado"));
-	// le.setID_paciente(result.getInt("ID_paciente"));
-	// le.setCRML(result.getInt("CRML"));
-	// }
-	//
-	// } catch (SQLException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// render(list_laudo);
-	// }
 
 	public static void showMedlab() {
 
@@ -174,7 +165,8 @@ public class Application extends Controller {
 			e.printStackTrace();
 		}
 
-		render(list_medico);
+		//render(list_medico);
+		
 	}
 
 	public static void showExame_DataPrometida(String date) {
@@ -184,7 +176,7 @@ public class Application extends Controller {
 
 		try {
 			result = comando
-					.executeQuery("SELECT * FROM examelaudo WHERE dataentrega = "
+					.executeQuery("SELECT * FROM ExameLaudo WHERE dataentrega = "
 							+ date);
 			while (result.next()) {
 				Exame le = new Exame();
@@ -218,7 +210,7 @@ public class Application extends Controller {
 
 		try {
 			result = comando
-					.executeQuery("SELECT * FROM examelaudo WHERE situacao = "
+					.executeQuery("SELECT * FROM ExameLaudo WHERE situacao = "
 							+ situacao);
 			while (result.next()) {
 				Exame le = new Exame();
@@ -251,7 +243,7 @@ public class Application extends Controller {
 		try {
 			result = comando
 					.executeQuery("SELECT m.CRMR, m.nome nome, m.email email, m.telefone telefone "
-							+ "FROM medicoreq m INNER JOIN examelaudo e "
+							+ "FROM medicoreq m INNER JOIN ExameLaudo e "
 							+ "ON m.CRMR = e.CRMR " + "WHERE e.ID = " + ID);
 			while (result.next()) {
 				MedicoReq le = new MedicoReq();
@@ -305,102 +297,11 @@ public class Application extends Controller {
 
 	}
 
-	public static void showPaciente_RG(String RG) {
-		conectar();
-		List<Paciente> list_paciente = new ArrayList<Paciente>();
-		ResultSet result;
-
-		try {
-			result = comando.executeQuery("SELECT * FROM Paciente WHERE RG = '"
-					+ RG + "'");
-			while (result.next()) {
-				Paciente le = new Paciente();
-				le.setID(result.getInt("ID"));
-				le.setNome(result.getString("nome"));
-				le.setEndereco(result.getString("endereco"));
-				le.setEmail(result.getString("email"));
-				le.setTelefone(result.getString("telefone"));
-				le.setSexo(result.getString("sexo"));
-				le.setDatanasc(result.getString("datanasc"));
-				le.setEstadocivil(result.getString("estadocivil"));
-				le.setCpf(result.getInt("cpf"));
-				le.setRg(result.getInt("rg"));
-				le.setObservacoes(result.getString("observacoes"));
-				list_paciente.add(le);
-
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		render(list_paciente);
-	}
-
-	public static void showPaciente_CPF(Paciente paciente) {
-		conectar();
-		List<Paciente> list_paciente = new ArrayList<Paciente>();
-		ResultSet result;
-
-		try {
-			result = comando
-					.executeQuery("select * from Paciente WHERE cpf = '"
-							+ paciente.cpf + "'");
-			while (result.next()) {
-				Paciente le = new Paciente();
-				le.setID(result.getInt("ID"));
-				le.setNome(result.getString("nome"));
-				le.setEndereco(result.getString("endereco"));
-				le.setEmail(result.getString("email"));
-				le.setTelefone(result.getString("telefone"));
-				le.setSexo(result.getString("sexo"));
-				le.setDatanasc(result.getString("datanasc"));
-				le.setEstadocivil(result.getString("estadocivil"));
-				le.setCpf(result.getInt("cpf"));
-				le.setRg(result.getInt("rg"));
-				le.setObservacoes(result.getString("observacoes"));
-				list_paciente.add(le);
-
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		render(list_paciente);
-
-	}
-
-	public static void showEmail_Paciente(int ID) {
-		conectar();
-		List<String> list_email = new ArrayList<String>();
-		ResultSet result;
-
-		try {
-			result = comando
-					.executeQuery("SELECT email FROM Paciente WHERE ID = " + ID);
-			while (result.next()) {
-				String le = new String();
-				le = (result.getString("email"));
-				list_email.add(le);
-
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		render(list_email);
-	}
-
 	public static void showMedico_Paciente(int ID) {
 		conectar();
 		List<MedicoReq> list_medico = new ArrayList<MedicoReq>();
 		ResultSet result;
-
+		
 		try {
 			result = comando
 					.executeQuery("SELECT m.CRMR, m.nome, m.email, m.telefone"
@@ -425,75 +326,178 @@ public class Application extends Controller {
 
 	}
 
-
 	public static void doCreateExame(Exame exame) {
 		conectar();
-		String insert_exame = "INSERT INTO examelaudo VALUES (" + exame.ID
-				+ "," + exame.ID_material + ",'" + exame.situacao + "','"
-				+ exame.datarec + "','" + exame.dataentrega + "',"
-				+ exame.ID_paciente + "," + exame.CRMR + "," + exame.CRML + ","
-				+ "NULL, NULL, NULL,'" + exame.observacoes + "')";
+		ResultSet result1 = null;
+		ResultSet result2 = null;
+		ResultSet result3 = null;
+		ResultSet result4 = null;
+		
 		try {
+			
+		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
+					+ exame.ID);
+		conectar();
+		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
+				+ exame.ID_paciente);
+		conectar();
+		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
+				+ exame.CRML);
+		conectar();
+		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
+				+ exame.CRMR);
+		
+		String insert_exame = "INSERT INTO ExameLaudo VALUES ("
+				+ exame.ID + "," 
+				+ exame.ID_material + ",'" 
+				+ exame.situacao + "','"
+				+ exame.datarec + "','" 
+				+ exame.dataentrega + "',"
+				+ exame.ID_paciente + "," 
+				+ exame.CRMR + "," 
+				+ exame.CRML + ",'"
+				+ exame.Resultado + "','"
+				+ exame.Analise_macro + "','"
+				+ exame.Analise_micro + "','"
+				+ exame.observacoes + "')";
+		
+		
+		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
+			System.out.println("entrou aqui");
+			conectar();
 			comando.executeUpdate(insert_exame);
+			showExame();
+		} else {
+			System.out.println("entrou erro");
+			Erro();
+		}
+		
+			
+	
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		showExame();
+		
+	}
+	
+	public static void doEditExame(Exame exame) {
+		conectar();
+		ResultSet result1 = null;
+		ResultSet result2 = null;
+		ResultSet result3 = null;
+		ResultSet result4 = null;
+		
+		try {
+			
+		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
+					+ exame.ID);
+		conectar();
+		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
+				+ exame.ID_paciente);
+		conectar();
+		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
+				+ exame.CRML);
+		conectar();
+		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
+				+ exame.CRMR);
+		
+		String insert_exame = "UPDATE ExameLaudo SET "
+				+ "ID_material=" + exame.ID_material
+				+ ",situacao='" + exame.situacao
+				+ "',datarec='" + exame.datarec
+				+ "',dataentrega='" + exame.dataentrega
+				+ "',ID_paciente=" + exame.ID_paciente
+				+ ",CRMR=" + exame.CRMR
+				+ ",CRML=" + exame.CRML
+				+ ",resultado='" + exame.Resultado
+				+ "',analise_macro='" + exame.Analise_macro
+				+ "',analise_micro='" + exame.Analise_micro
+				+ "',observacoes='" + exame.observacoes
+				+ "' WHERE ID=" + exame.ID;
+		
+		
+		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
+			System.out.println("entrou aqui");
+			conectar();
+			comando.executeUpdate(insert_exame);
+			showExame();
+		} else {
+			System.out.println("entrou erro");
+			Erro();
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-
-	// public static void doCreateLaudo(Laudo laudo) {
-	// conectar();
-	// String insert_laudo = "INSERT INTO Laudo VALUES ("
-	// + laudo.ID + ",'" + laudo.analise_macro + "','"
-	// + laudo.analise_micro + "','" + laudo.resultado + "','"
-	// + laudo.
-	// + laudo.ID_paciente + "," + laudo.CRML + ")";
-	// try {
-	// comando.executeUpdate(insert_laudo);
-	// } catch (SQLException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// createLaudo();
-	// showLaudo();
-	// }
+	public static void doCreateUser (Usuarios usuarios) {
+		
+		conectar();
+		String insert_usuario = "INSERT INTO Usuarios VALUES ('" +usuarios.username + "','"
+				+ usuarios.password + "')";
+		try {
+			comando.executeUpdate(insert_usuario);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		render();
+	}
 
 	public static void doCreateMedlab(MedicoLab medicolab) {
 		conectar();
+		ResultSet result1 = null;
+		try {
+			
+		result1 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
+					+ medicolab.CRML);
+		
 		String insert_medico = "INSERT INTO MedicoLab VALUES ("
 				+ medicolab.CRML + ",'" + medicolab.nome + "','"
 				+ medicolab.email + "','" + medicolab.telefone + "')";
 
-		try {
+		if (medicolab.CRML != 0 && !result1.next()) {
+			System.out.println("entrou aqui");
+			conectar();
 			comando.executeUpdate(insert_medico);
+			showMedreq();
+		} else {
+			System.out.println("entrou erro");
+			Erro();
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		showMedlab();
 	}
 
 	public static void doCreateMedreq(MedicoReq medicoreq) {
 		conectar();
+		ResultSet result1 = null;
+		try {
+			
+		result1 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
+					+ medicoreq.CRMR);
 		String insert_medico = "INSERT INTO MedicoReq VALUES ("
 				+ medicoreq.CRMR + ",'" + medicoreq.nome + "','"
 				+ medicoreq.email + "','" + medicoreq.telefone + "')";
 
-		try {
+		if (medicoreq.CRMR != 0 && !result1.next()) {
+			System.out.println("entrou aqui");
+			conectar();
 			comando.executeUpdate(insert_medico);
+			showMedreq();
+		} else {
+			System.out.println("entrou erro");
+			Erro();
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		showMedreq();
-	}
-
-	public static void createPaciente() {
-		render();
 	}
 
 	public static void createExame() {
@@ -515,29 +519,145 @@ public class Application extends Controller {
 	public static void createUser() {
 		render();
 	}
-
-
-	public static void searchByCpf() {
-		render();
-	}
-
 	
+	public static void buscarexameDataEntrega () {
+		  render();
+		 }
 
-	public static void index_autenticado() {
+	public static void buscarExameSituacao() {
+		  render();
+		 }
+	
+	public static void buscarMedicoReqExameId() {
+		  render ();
+		 }
+
+	public static void buscarExameID() {
+		  render ();
+		 }
+
+	public static void buscarMedPacienteID() {
+		  render();
+		 }
+
+	public static void Erro() {
 		render();
 	}
-
-	public static void login(Usuarios usuarios) {
-		index_autenticado();
-	}
-
-
-
+	
 	public static void index() {
 		render();
 	}
 
 	public static void main() {
 		render();
+	}
+	
+	public static void editExame() {
+		render();
+	}
+	
+	public static void showUltimosExames () {
+
+		conectar();
+		List<Exame> list_exame = new ArrayList<Exame>();
+		ResultSet result;
+
+		try {
+			result = comando.executeQuery("select * from ultimoExame");
+			while (result.next()) {
+				Exame le = new Exame();
+				le.setID(result.getInt("ID"));
+				System.out.println(result.getInt("ID"));
+				le.setID_material(result.getInt("ID_material"));
+				le.setSituacao(result.getString("situacao"));
+				le.setDatarec(result.getString("datarec"));
+				le.setDataentrega(result.getString("dataentrega"));
+				le.setID_paciente(result.getInt("ID_paciente"));
+				le.setCRMR(result.getInt("CRMR"));
+				le.setCRML(result.getInt("CRML"));
+				le.setResultado(result.getString("resultado"));
+				le.setAnalise_macro(result.getString("analise_macro"));
+				le.setObservacoes(result.getString("observacoes"));
+				list_exame.add(le);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		render(list_exame);
+		
+	}
+	
+	public static void showExamesEntregues () {
+
+		conectar();
+		List<Exame> list_exame = new ArrayList<Exame>();
+		ResultSet result;
+
+		try {
+			result = comando.executeQuery("select * from examesEntregues");
+			while (result.next()) {
+				Exame le = new Exame();
+				le.setID(result.getInt("ID"));
+				System.out.println(result.getInt("ID"));
+				le.setID_material(result.getInt("ID_material"));
+				le.setSituacao(result.getString("situacao"));
+				le.setDatarec(result.getString("datarec"));
+				le.setDataentrega(result.getString("dataentrega"));
+				le.setID_paciente(result.getInt("ID_paciente"));
+				le.setCRMR(result.getInt("CRMR"));
+				le.setCRML(result.getInt("CRML"));
+				le.setResultado(result.getString("resultado"));
+				le.setAnalise_macro(result.getString("analise_macro"));
+				le.setObservacoes(result.getString("observacoes"));
+				list_exame.add(le);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		render(list_exame);
+		
+	}
+	
+	public static void showExamesNaoEntregues () {
+
+		conectar();
+		List<Exame> list_exame = new ArrayList<Exame>();
+		ResultSet result;
+
+		try {
+			result = comando.executeQuery("select * from examesNaoEntregues");
+			while (result.next()) {
+				Exame le = new Exame();
+				le.setID(result.getInt("ID"));
+				System.out.println(result.getInt("ID"));
+				le.setID_material(result.getInt("ID_material"));
+				le.setSituacao(result.getString("situacao"));
+				le.setDatarec(result.getString("datarec"));
+				le.setDataentrega(result.getString("dataentrega"));
+				le.setID_paciente(result.getInt("ID_paciente"));
+				le.setCRMR(result.getInt("CRMR"));
+				le.setCRML(result.getInt("CRML"));
+				le.setResultado(result.getString("resultado"));
+				le.setAnalise_macro(result.getString("analise_macro"));
+				le.setObservacoes(result.getString("observacoes"));
+				list_exame.add(le);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		render(list_exame);
+		
 	}
 }
