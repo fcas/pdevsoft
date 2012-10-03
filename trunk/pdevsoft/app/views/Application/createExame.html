@@ -16,25 +16,10 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="menu">
 		<ul>
-			<li id="med">Medicos
-			<ul id="interno"><li><a href="http://localhost:9000/Application/createMedlab"> Cadastrar Médico de Laboratório </a></li>
-<li id="link2"><a like href="http://localhost:9000/Application/createMedreq"> Cadastrar Médico Requisitante </a></li>
-			</ul></li>
-			<li id="paciente">Pacientes
-			<ul id="interno2"><li><a like href="http://localhost:9000/Application/createPaciente"> Cadastrar paciente </a></li>
-			</ul></li>
-			<li id="exame">Exames
-			<ul id="interno3">
-<li id="link4"><a like href="http://localhost:9000/Application/createExame"> Cadastrar exame </a></li>
-			</ul></li>
-			<li id="laudo">Laudos
-			<ul id="interno4">
-<li id="link5"><a like href="http://localhost:9000/Application/createLaudo"> Cadastrar laudo </a></li>
-			</ul></li>
-			<li id="sobre">Sobre
-			<ul id="interno5"><li><a href="#">Quem somos nós</a></li>
-			<li><a href="#">Localização</a></li>
-			</ul></li>
+			<li id="med">Medicos</li>
+			<li id="paciente">Pacientes</li>
+			<li id="exame">Exames</li>
+			<li id="sobre">Sobre</li>
 			<li id="contato">Contato</li>
 			<li id="contato">Ajuda</li>
 		</ul>
@@ -92,19 +77,19 @@ CONTENT="text/html; charset=UTF-8">
 		</tr><tr>
 			<td><label>Resultado: </label></td>
 			<td><p class="field">
-				<input type="text" name="exame.datarec"/>
+				<input type="text" name="exame.resultado"/>
 				</p></td>
 		</tr>
 		<tr>
 			<td><label>Analise Macro: </label></td>
 			<td><p class="field">
-				<input type="text" name="exame.analise_macro"/>
+				<input type="text" name="exame.Analise_macro"/>
 				</p></td>
 		</tr>
 		<tr>
 			<td><label>Análise Micro: </label></td>
 			<td><p class="field">
-				<input type="text" name="exame.analise_micro"/>
+				<input type="text" name="exame.Analise_micro"/>
 				</p></td>
 		</tr><tr>
 			<td><label>Observações: </label></td>
@@ -123,9 +108,33 @@ CONTENT="text/html; charset=UTF-8">
  <p>
 </form>
 </div>
+
+
 <div id="menu2">
-	
+<ul id="interno"><li><a href="http://localhost:9000/Application/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
+<li id="link2"><a like href="http://localhost:9000/Application/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br>
+</ul>
+<ul id="interno2"><li><a like href="http://localhost:9000/Application/createPaciente"> Cadastrar paciente </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarPacienteRG"> Buscar paciente por RG </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarPacienteCPF"> Buscar paciente por CPF </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarEmailPaciente"> Buscar email do paciente </a></li></br>
+</ul>
+<ul id="interno3"><li id="link4"><a like href="http://localhost:9000/Application/createExame"> Cadastrar exame </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarExameID"> Buscar exame por ID </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarexameDataEntrega"> Buscar exame por data </a></li></br>
+<li><a like href="http://localhost:9000/Application/buscarExameSituacao"> Buscar exame por situação </a></li></br>
+<li><a like href="http://localhost:9000/Application/showExamesEntregues"> Visualizar exames entregues </a></li></br>
+<li><a like href="http://localhost:9000/Application/showExamesNaoEntregues"> Visualizar exames não entregues </a></li></br>
+<li><a like href="http://localhost:9000/Application/showUltimosExames"> Visualizar os ultimos 3 exames cadastrados </a></li></br>
+
+</ul>
+<ul id="interno5"><li><a href="#">Quem somos nós</a></li></br>
+			<li><a href="#">Localização</a></li>
+			</ul>
 </div>
+
 
 
 </div>

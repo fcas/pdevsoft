@@ -2,12 +2,18 @@ package models;
 
 import play.db.jpa.Model;
 import javax.persistence.*;
+import play.data.validation.Email;
 
 import java.util.*;
 
 public class MedicoReq extends Model {
 	
-	public int CRMR; 
+	public int CRMR;
+	public String nome;
+	public @Email String email; 
+	public String telefone; 
+	
+	//getters and setters
 	public int getCRMR() {
 		return CRMR;
 	}
@@ -32,9 +38,5 @@ public class MedicoReq extends Model {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String nome;
-	public String email; 
-	public String telefone; 
-	
 	
 }
