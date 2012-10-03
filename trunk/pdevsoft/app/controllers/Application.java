@@ -59,12 +59,9 @@ public class Application extends Controller {
 		}
 
 	}
+	
+	
 
-	
-	
-		
-	
-	
 	public static void showExame() {
 
 		conectar();

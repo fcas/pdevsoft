@@ -1,7 +1,9 @@
 package controllers;
 
+
 import play.*;
 import play.mvc.*;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +15,32 @@ import javax.persistence.Id;
 import models.*;
 
 public class DaoPaciente extends Controller {
+	
+	private static Connection con;
+	private static Statement comando;
 
+	private static void conectar() {
+
+		try {
+			con = ConFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
+					"eplay", ConFactory.MYSQL);
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			comando = con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Conectado!");
+
+	}
+	
 	public static void doCreatePaciente(Paciente paciente) {
 		conectar();
 		String insert_paciente = "INSERT INTO Paciente VALUES (" + paciente.ID
@@ -31,6 +58,9 @@ public class DaoPaciente extends Controller {
 
 		showPaciente();
 	}
+	
+
+	
 
 	public static void doDeletePaciente(Paciente paciente) {
 		conectar();
