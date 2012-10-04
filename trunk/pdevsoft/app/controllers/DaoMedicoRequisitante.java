@@ -154,6 +154,10 @@ public class DaoMedicoRequisitante extends Controller {
 		render();
 	}
 	
+	public static void buscarMedPacienteID() {
+		render();
+	}
+	
 	public static void buscarMedicoReqExameId() {
 		  render ();
 		 }

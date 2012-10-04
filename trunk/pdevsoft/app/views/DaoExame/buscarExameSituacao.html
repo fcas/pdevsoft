@@ -29,20 +29,20 @@ CONTENT="text/html; charset=UTF-8">
 <div id="content">
 	<div id="principal">
 </br> </br> 
-		<h1>Buscar paciente pelo CPF</h1>
-	<form action="@{DaoPaciente.showPaciente_CPF()}" method="POST">
+		<h1>Buscar exame pela situação</h1>
+	<form action="@{DaoExame.showExame_Situacao()}" method="POST">
 		<table>
 		<tr>
-			<td><label>CPF: </label></td>
+			<td><label>Digite a situação: </label></td>
 			<td><p class="field">
-				<input type="text" name="paciente.cpf"/>
+				<input type="text" name="situacao"/>
 				</p></td>
 		</tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar paciente"/>
+			<td></td><td><input type="submit" name="create" value="Buscar"/>
 			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>

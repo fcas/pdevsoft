@@ -1,4 +1,9 @@
 #{extends 'main.html' /}
+#{set title:'ePlay Auctions - Create a new Item Listing' /}
+#{set 'moreStyles'}
+<link rel="stylesheet" href="@{'/public/stylesheets/style.css'}">
+#{/set}
+
 <div id="header">
 <h1 id="m1">MedLab</h1>
 </div>
@@ -15,12 +20,12 @@
 </div>
 
 <div id="content">
-<div id="principal">
-<h1>Paciente cadastrado com sucesso!</h1>
-<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
 
-</div>
-<p>
+<h1>Exame cadastrado com sucesso!</h1>
+
+
+<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
+</p>
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/DaoMedicoLaboratorio/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -45,7 +50,5 @@
 			<li><a href="#">Localização</a></li>
 			</ul>
 </div>
-</div>
-<div id="footer">
- Â© Copyright AndFeLa 2012
+
 </div>
