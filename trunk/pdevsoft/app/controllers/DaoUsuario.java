@@ -12,9 +12,9 @@ import java.util.*;
 import javax.persistence.Id;
 
 import models.*;
-//LOGIN NÃO ESTÁ FUNCIONANDO
-public class Application extends Controller {
 
+public class DaoUsuario extends Controller {
+	
 	private static Connection con;
 	private static Statement comando;
 
@@ -39,54 +39,26 @@ public class Application extends Controller {
 		System.out.println("Conectado!");
 
 	}
-
-	@Before(unless = {"index", "doCreateUser", "login"})
-	static void checkAutenticacao() throws SQLException {
-		if (!session.contains("login")) {
-			index();
-		}
-	}
 	
-	public static void login (Usuarios usuarios) {
+	public static void doCreateUser (Usuarios usuarios) {
 		
 		conectar();
-		ResultSet rs = null;
-		System.out.println(usuarios.username + ", " + usuarios.password);
+		String insert_usuario = "INSERT INTO Usuarios VALUES ('" +usuarios.username + "','"
+				+ usuarios.password + "')";
 		try {
-			rs = comando.executeQuery("SELECT * FROM Usuarios WHERE username = '"
-					+ usuarios.username + "' AND password = '" + usuarios.password
-					+ "'");
-
-			
-			if (rs.next()) {
-				session.put("login", "ola");
-				System.out.println("ENTROU");
-			}
-			bemVindo();
+			comando.executeUpdate(insert_usuario);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public static void bemVindo () {
 		render();
 	}
 
-	public static void logout() {
-		session.remove("login");
-		index();
+	public static void createUser() {
+		render();
 	}
 
 	public static void Erro() {
-		render();
-	}
-	
-	public static void index() {
-		render();
-	}
-
-	public static void main() {
 		render();
 	}
 	
