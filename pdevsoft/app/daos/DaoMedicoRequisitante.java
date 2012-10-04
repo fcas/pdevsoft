@@ -1,4 +1,4 @@
-package controllers;
+package daos;
 
 import play.*;
 import play.mvc.*;
@@ -161,10 +161,6 @@ public class DaoMedicoRequisitante extends Controller {
 	public static void buscarMedicoReqExameId() {
 		  render ();
 		 }
-	
-	public static void buscarMedPacienteID() {
-		  render();
-	}
 	
 	public static void Erro() {
 		render();

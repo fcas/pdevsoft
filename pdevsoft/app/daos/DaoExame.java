@@ -1,4 +1,4 @@
-package controllers;
+package daos;
 
 import play.*;
 import play.mvc.*;
@@ -41,6 +41,121 @@ public class DaoExame extends Controller {
 
 	}
 
+	public static void doCreateExame(Exame exame) {
+		conectar();
+		ResultSet result1 = null;
+		ResultSet result2 = null;
+		ResultSet result3 = null;
+		ResultSet result4 = null;
+		
+		try {
+			
+		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
+					+ exame.ID);
+		conectar();
+		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
+				+ exame.ID_paciente);
+		conectar();
+		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
+				+ exame.CRML);
+		conectar();
+		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
+				+ exame.CRMR);
+		
+		String insert_exame = "INSERT INTO ExameLaudo VALUES ("
+				+ exame.ID + "," 
+				+ exame.ID_material + ",'" 
+				+ exame.situacao + "','"
+				+ exame.datarec + "','" 
+				+ exame.dataentrega + "',"
+				+ exame.ID_paciente + "," 
+				+ exame.CRMR + "," 
+				+ exame.CRML + ",'"
+				+ exame.Resultado + "','"
+				+ exame.Analise_macro + "','"
+				+ exame.Analise_micro + "','"
+				+ exame.observacoes + "')";
+		
+		
+		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
+			System.out.println("entrou aqui");
+			conectar();
+			comando.executeUpdate(insert_exame);
+			showExame();
+		} else {
+			System.out.println("entrou erro");
+			Erro();
+		}
+		
+			
+	
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void createExame() {
+		render();
+	}
+
+	public static void doEditExame(Exame exame) {
+		conectar();
+		ResultSet result1 = null;
+		ResultSet result2 = null;
+		ResultSet result3 = null;
+		ResultSet result4 = null;
+		
+		try {
+			
+		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
+					+ exame.ID);
+		conectar();
+		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
+				+ exame.ID_paciente);
+		conectar();
+		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
+				+ exame.CRML);
+		conectar();
+		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
+				+ exame.CRMR);
+		
+		String insert_exame = "UPDATE ExameLaudo SET "
+				+ "ID_material=" + exame.ID_material
+				+ ",situacao='" + exame.situacao
+				+ "',datarec='" + exame.datarec
+				+ "',dataentrega='" + exame.dataentrega
+				+ "',ID_paciente=" + exame.ID_paciente
+				+ ",CRMR=" + exame.CRMR
+				+ ",CRML=" + exame.CRML
+				+ ",resultado='" + exame.Resultado
+				+ "',analise_macro='" + exame.Analise_macro
+				+ "',analise_micro='" + exame.Analise_micro
+				+ "',observacoes='" + exame.observacoes
+				+ "' WHERE ID=" + exame.ID;
+		
+		
+		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
+			System.out.println("entrou aqui");
+			conectar();
+			comando.executeUpdate(insert_exame);
+			showExame();
+		} else {
+			System.out.println("entrou erro");
+			Erro();
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void editExame() {
+		render();
+	}
+
 	public static void showExame() {
 
 		conectar();
@@ -65,7 +180,6 @@ public class DaoExame extends Controller {
 				le.setAnalise_micro(result.getString("analise_micro"));
 				le.setObservacoes(result.getString("observacoes"));
 				list_exame.add(le);
-
 			}
 
 		} catch (SQLException e) {
@@ -179,117 +293,6 @@ public class DaoExame extends Controller {
 
 	}
 	
-	public static void doCreateExame(Exame exame) {
-		conectar();
-		ResultSet result1 = null;
-		ResultSet result2 = null;
-		ResultSet result3 = null;
-		ResultSet result4 = null;
-		
-		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
-					+ exame.ID);
-		conectar();
-		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
-				+ exame.ID_paciente);
-		conectar();
-		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
-				+ exame.CRML);
-		conectar();
-		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
-				+ exame.CRMR);
-		
-		String insert_exame = "INSERT INTO ExameLaudo VALUES ("
-				+ exame.ID + "," 
-				+ exame.ID_material + ",'" 
-				+ exame.situacao + "','"
-				+ exame.datarec + "','" 
-				+ exame.dataentrega + "',"
-				+ exame.ID_paciente + "," 
-				+ exame.CRMR + "," 
-				+ exame.CRML + ",'"
-				+ exame.Resultado + "','"
-				+ exame.Analise_macro + "','"
-				+ exame.Analise_micro + "','"
-				+ exame.observacoes + "')";
-		
-		
-		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
-			System.out.println("entrou aqui");
-			conectar();
-			comando.executeUpdate(insert_exame);
-			showExame();
-		} else {
-			System.out.println("entrou erro");
-			Erro();
-		}
-		
-			
-	
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public static void doEditExame(Exame exame) {
-		conectar();
-		ResultSet result1 = null;
-		ResultSet result2 = null;
-		ResultSet result3 = null;
-		ResultSet result4 = null;
-		
-		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
-					+ exame.ID);
-		conectar();
-		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
-				+ exame.ID_paciente);
-		conectar();
-		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
-				+ exame.CRML);
-		conectar();
-		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
-				+ exame.CRMR);
-		
-		String insert_exame = "UPDATE ExameLaudo SET "
-				+ "ID_material=" + exame.ID_material
-				+ ",situacao='" + exame.situacao
-				+ "',datarec='" + exame.datarec
-				+ "',dataentrega='" + exame.dataentrega
-				+ "',ID_paciente=" + exame.ID_paciente
-				+ ",CRMR=" + exame.CRMR
-				+ ",CRML=" + exame.CRML
-				+ ",resultado='" + exame.Resultado
-				+ "',analise_macro='" + exame.Analise_macro
-				+ "',analise_micro='" + exame.Analise_micro
-				+ "',observacoes='" + exame.observacoes
-				+ "' WHERE ID=" + exame.ID;
-		
-		
-		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
-			System.out.println("entrou aqui");
-			conectar();
-			comando.executeUpdate(insert_exame);
-			showExame();
-		} else {
-			System.out.println("entrou erro");
-			Erro();
-		}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public static void createExame() {
-		render();
-	}
-	
 	public static void buscarExameID() {
 		  render ();
 		 }
@@ -301,10 +304,6 @@ public class DaoExame extends Controller {
 	public static void buscarexameDataEntrega () {
 		  render();
 		 }
-	
-	public static void editExame() {
-		render();
-	}
 	
 	public static void showUltimosExames () {
 
