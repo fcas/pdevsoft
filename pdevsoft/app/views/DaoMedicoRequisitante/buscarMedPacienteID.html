@@ -29,20 +29,25 @@ CONTENT="text/html; charset=UTF-8">
 <div id="content">
 	<div id="principal">
 </br> </br> 
-		<h1>Buscar paciente pelo CPF</h1>
-	<form action="@{DaoPaciente.showPaciente_CPF()}" method="POST">
+		<h1>Buscar informações do médico requisitante</h1>
+		<!-- aqui embaixo, a action se chamava "Application.showMedico_Paciente".
+		Troquei para DaoMedicoRequisitante, mas continua dando errado.
+		Fui no código do controller e criei o método buscarMedPacienteID() só com o "render"
+		Deu certo.
+		-->
+	<form action="@{DaoMedicoRequisitante.showMedico_Paciente()}" method="POST">
 		<table>
-		<tr>
-			<td><label>CPF: </label></td>
-			<td><p class="field">
-				<input type="text" name="paciente.cpf"/>
+		<tr><p class="field">
+			<td><label>Digite o ID do paciente: </label></td>
+			<td>
+				<input type="text" name="ID">
 				</p></td>
 		</tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar paciente"/>
+			<td></td><td><input type="submit" name="create" value="Buscar"/>
 			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>

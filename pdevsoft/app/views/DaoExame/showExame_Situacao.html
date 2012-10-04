@@ -1,6 +1,8 @@
 <!--#{extends 'main.html' /}
 #{set title:'Remover Paciente' /}
 -->
+<html>
+
 <head>
 <link rel="stylesheet"media="screen" href="style.css">
 <script type="text/javascript" src="jquery.js"></script> 
@@ -26,30 +28,45 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
+
+<body>
+
+
 <div id="content">
 	<div id="principal">
-</br> </br> 
-		<h1>Buscar paciente pelo CPF</h1>
-	<form action="@{DaoPaciente.showPaciente_CPF()}" method="POST">
+	<h1>Exames</h1>
+	#{list items: list_exame, as : 'p'}
 		<table>
 		<tr>
-			<td><label>CPF: </label></td>
-			<td><p class="field">
-				<input type="text" name="paciente.cpf"/>
-				</p></td>
+			<td><label>ID: </label></td>
+			<td>${p.ID}</td>
 		</tr>
+		<tr>
+			<td><label>Situacao: </label></td>
+			<td>${p.situacao}</td>
+		</tr>
+		<tr>
+			<td><label>Data da requisição: </label></td>
+			<td>${p.datarec}</td>
+		</tr><tr>
+			<td><label>Data da entrega: </label></td>
+			<td>${p.dataentrega}</td>
+		</tr><tr>
+			<td><label>ID Paciente: </label></td>
+			<td>${p.ID_paciente}</td>
+		</tr>
+		#{/list}
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar paciente"/>
-			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+			<td></td>
+			</td>
 		</tr>
-		</table>
+		</table><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'">
  <p>
-
+</form>
 </div>
-
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/DaoMedicoLaboratorio/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -76,8 +93,5 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
-</div>
-
-<div id="footer">
- © Copyright AndFeLa 2012
-</div>
+</body>
+</html>
