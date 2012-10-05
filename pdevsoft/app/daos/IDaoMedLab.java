@@ -1,6 +1,8 @@
 package daos;
+import models.*;
+import java.util.List;
 
-public interface IDaoMedLab () {
+public interface IDaoMedLab {
 	
 	public void criarMedLab(MedicoLab medLab);
 	public void deletarMedLab(MedicoLab medLab);
