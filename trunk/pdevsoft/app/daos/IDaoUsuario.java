@@ -1,5 +1,5 @@
 package daos;
 
-public interface IDaoMedLab {
+public interface IDaoUsuario {
 
 }

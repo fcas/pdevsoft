@@ -1,4 +1,6 @@
 package daos;
+import models.*;
+import java.util.List;
 
 public interface IDaoExame {
 	public void criarExame(Exame exame);
