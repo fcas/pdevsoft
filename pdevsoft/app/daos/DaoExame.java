@@ -25,20 +25,13 @@ public class DaoExame extends Controller {
 		try {
 			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
 					"eplay", MySQLDAOFactory.MYSQL);
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
 			comando = con.createStatement();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Conectado!");
+		//System.out.println("Conectado!");
 
 	}
 
@@ -148,7 +141,6 @@ public class DaoExame extends Controller {
 			Erro();
 		}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -184,7 +176,6 @@ public class DaoExame extends Controller {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -219,7 +210,6 @@ public class DaoExame extends Controller {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -286,7 +276,6 @@ public class DaoExame extends Controller {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -333,7 +322,6 @@ public class DaoExame extends Controller {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -368,7 +356,6 @@ public class DaoExame extends Controller {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -403,7 +390,6 @@ public class DaoExame extends Controller {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
