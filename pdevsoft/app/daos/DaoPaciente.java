@@ -13,6 +13,7 @@ import java.util.*;
 import javax.persistence.Id;
 
 import models.*;
+import controllers; 
 
 public class DaoPaciente extends Controller {
 	
@@ -20,7 +21,7 @@ public class DaoPaciente extends Controller {
 	private static Statement comando;
 
 	private static void conectar() {
-
+		
 		try {
 			con = ConFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
 					"eplay", ConFactory.MYSQL);
