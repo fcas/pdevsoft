@@ -17,10 +17,11 @@ public class DaoUsuario extends Controller {
 	
 	private static Connection con;
 	private static Statement comando;
+	public static final int MYSQL = 0;
 
 	private static void conectar() {
 
-		DAOFactory factory = DAOFactory.getDaoFactory;
+		MySQLDAOFactory factory = DAOFactory.getDAOFactory(MYSQL);
 		
 		try {
 			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
