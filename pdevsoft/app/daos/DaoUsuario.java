@@ -20,9 +20,11 @@ public class DaoUsuario extends Controller {
 
 	private static void conectar() {
 
+		DAOFactory factory = DAOFactory.getDaoFactory;
+		
 		try {
-			con = ConFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
-					"eplay", ConFactory.MYSQL);
+			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
+					"eplay", factory.MYSQL);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
