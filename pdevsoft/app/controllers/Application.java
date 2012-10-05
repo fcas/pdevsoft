@@ -85,6 +85,12 @@ public class Application extends Controller {
 	}
 	
 	public static void index() {
+		DaoFactory factory = factory.createDaoFactory(0);
+		ControllerPaciente cpaciente = new ControllerPaciente(factory.createDaoPaciente());
+		ControllerExame cexame = new ControllerExame(factory.createDaoExame());
+		ControllerMedico cmedico = new ControllerMecido (factory.createDaoMedicoLaboratorio(), factory.createDaoMedicoRequisitante());
+		ControllerUsuario cusuario = new ControllerUsuario(factory.createDaoUsuario());
+				
 		render();
 	}
 
