@@ -15,18 +15,16 @@ import models.*;
 
 
 public class DaoExame extends Controller {
-	
 	private static Connection con;
 	private static Statement comando;
-	public static final int MYSQL = 0;
 
 	private static void conectar() {
 
-		MySQLDAOFactory factory = DAOFactory.getDAOFactory(MYSQL);
+		DAOFactory factory;
 		
 		try {
-			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
-					"eplay", factory.MYSQL);
+			con = MySQLDAOFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
+					"eplay", MySQLDAOFactory.MYSQL);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
