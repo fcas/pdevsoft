@@ -18,4 +18,25 @@ public class MySQLDAOFactory extends DAOFactory {
 		}
 		return DriverManager.getConnection(url, nome, senha);
 	}
+	
+	public IDaoPaciente createDaoPaciente() {
+		return new DaoPaciente();
+	}
+	
+	public IDaoExame createDaoExame() {
+		return new DaoExame();
+	}
+	
+	public IDaoMedLab createDaoMedicoLaboratorio() {
+		return new DaoMedicoLaboratorio();
+	}
+	
+	public IDaoMedReq createDaoMedicoRequisitante() {
+		return new DaoMedicoRequisitante();
+	}
+	
+	public IDaoUsuario createDaoUsuario() {
+		return new DaoUsuario();
+	}
+	
 }
