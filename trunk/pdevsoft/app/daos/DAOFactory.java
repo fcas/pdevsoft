@@ -1,6 +1,6 @@
 import java.sql.Connection;
 
-public abstract DAOFactory {
+public abstract class DAOFactory {
 	
 	// List of DAO types supported by the factory
 	  public static final int MYSQL = 0;
