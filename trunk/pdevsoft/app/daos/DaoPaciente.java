@@ -1,6 +1,5 @@
 package daos;
 
-
 import play.*;
 import play.mvc.*;
 
@@ -13,20 +12,19 @@ import java.util.*;
 import javax.persistence.Id;
 
 import models.*;
-import controllers; 
 
 public class DaoPaciente extends Controller {
-	
+
 	private static Connection con;
 	private static Statement comando;
 
 	private static void conectar() {
 
 		DAOFactory factory;
-		
+
 		try {
-			con = MySQLDAOFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
-					"eplay", MySQLDAOFactory.MYSQL);
+			con = MySQLDAOFactory.conexao("jdbc:mysql://localhost/eplay",
+					"eplay", "eplay", MySQLDAOFactory.MYSQL);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -43,21 +41,22 @@ public class DaoPaciente extends Controller {
 		System.out.println("Conectado!");
 
 	}
-	
+
 	public static void doCreatePaciente(Paciente paciente) {
 		conectar();
 		ResultSet result1 = null;
 		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
+
+			result1 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
 					+ paciente.ID);
-		
-		String insert_paciente = "INSERT INTO Paciente VALUES (" + paciente.ID
-				+ ",'" + paciente.nome + "','" + paciente.endereco + "','"
-				+ paciente.email + "','" + paciente.telefone + "','"
-				+ paciente.sexo + "','" + paciente.datanasc + "','"
-				+ paciente.estadocivil + "','" + paciente.cpf + "','"
-				+ paciente.rg + "','" + paciente.observacoes + "')";
+
+			String insert_paciente = "INSERT INTO Paciente VALUES ("
+					+ paciente.ID + ",'" + paciente.nome + "','"
+					+ paciente.endereco + "','" + paciente.email + "','"
+					+ paciente.telefone + "','" + paciente.sexo + "','"
+					+ paciente.datanasc + "','" + paciente.estadocivil + "','"
+					+ paciente.cpf + "','" + paciente.rg + "','"
+					+ paciente.observacoes + "')";
 
 			if (paciente.ID != 0 && !result1.next()) {
 				System.out.println("entrou aqui");
@@ -74,14 +73,15 @@ public class DaoPaciente extends Controller {
 		}
 
 	}
-	
+
 	public static void createPaciente() {
 		render();
 	}
-	
+
 	public static void doDeletePaciente(Paciente paciente) {
 		conectar();
-		String remove_paciente = "DELETE FROM Paciente WHERE ID = " + paciente.ID + ";";
+		String remove_paciente = "DELETE FROM Paciente WHERE ID = "
+				+ paciente.ID + ";";
 		try {
 			comando.executeUpdate(remove_paciente);
 		} catch (SQLException e) {
@@ -91,7 +91,7 @@ public class DaoPaciente extends Controller {
 
 		showPaciente();
 	}
-	
+
 	public static void deletePaciente() {
 		render();
 	}
@@ -100,18 +100,18 @@ public class DaoPaciente extends Controller {
 		conectar();
 		ResultSet result1 = null;
 		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
+
+			result1 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
 					+ paciente.ID);
-		
-		String insert_paciente = "UPDATE Paciente SET nome='" + paciente.nome
-				+ "',endereco='" + paciente.endereco + "',email='"
-				+ paciente.email + "',telefone='" + paciente.telefone
-				+ "',sexo='" + paciente.sexo + "',datanasc='"
-				+ paciente.datanasc + "',estadocivil='" + paciente.estadocivil
-				+ "',cpf=" + paciente.cpf + ",rg=" + paciente.rg
-				+ ",observacoes='" + paciente.observacoes + "' WHERE ID="
-				+ paciente.ID + "";
+
+			String insert_paciente = "UPDATE Paciente SET nome='"
+					+ paciente.nome + "',endereco='" + paciente.endereco
+					+ "',email='" + paciente.email + "',telefone='"
+					+ paciente.telefone + "',sexo='" + paciente.sexo
+					+ "',datanasc='" + paciente.datanasc + "',estadocivil='"
+					+ paciente.estadocivil + "',cpf=" + paciente.cpf + ",rg="
+					+ paciente.rg + ",observacoes='" + paciente.observacoes
+					+ "' WHERE ID=" + paciente.ID + "";
 			if (paciente.ID != 0 && !result1.next()) {
 				System.out.println("entrou aqui");
 				conectar();
@@ -125,14 +125,14 @@ public class DaoPaciente extends Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		showPaciente();
 	}
 
 	public static void editPaciente() {
 		render();
 	}
-	
+
 	public static void showPaciente() {
 
 		conectar();
@@ -166,7 +166,7 @@ public class DaoPaciente extends Controller {
 		render(list_paciente);
 
 	}
-	
+
 	public static void Erro() {
 		render();
 	}
@@ -175,7 +175,7 @@ public class DaoPaciente extends Controller {
 		conectar();
 		List<Paciente> list_paciente = new ArrayList<Paciente>();
 		ResultSet result;
-	
+
 		try {
 			result = comando.executeQuery("SELECT * FROM Paciente WHERE RG = '"
 					+ RG + "'");
@@ -193,25 +193,26 @@ public class DaoPaciente extends Controller {
 				le.setRg(result.getInt("rg"));
 				le.setObservacoes(result.getString("observacoes"));
 				list_paciente.add(le);
-	
+
 			}
-	
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		render(list_paciente);
 	}
-	
+
 	public static void showPaciente_CPF(String CPF) {
 		conectar();
 		List<Paciente> list_paciente = new ArrayList<Paciente>();
 		ResultSet result;
-		
+
 		try {
-			result = comando.executeQuery("SELECT * FROM Paciente WHERE CPF = '"
-					+ CPF + "'");
+			result = comando
+					.executeQuery("SELECT * FROM Paciente WHERE CPF = '" + CPF
+							+ "'");
 			while (result.next()) {
 				Paciente le = new Paciente();
 				le.setID(result.getInt("ID"));
@@ -226,23 +227,23 @@ public class DaoPaciente extends Controller {
 				le.setRg(result.getInt("rg"));
 				le.setObservacoes(result.getString("observacoes"));
 				list_paciente.add(le);
-	
+
 			}
-	
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		render(list_paciente);
 	}
-	
+
 	public static void showEmail_Paciente(int ID) {
 
 		conectar();
 		List<String> list_email = new ArrayList<String>();
 		ResultSet result;
-	
+
 		try {
 			result = comando
 					.executeQuery("SELECT email FROM Paciente WHERE ID = " + ID);
@@ -250,26 +251,26 @@ public class DaoPaciente extends Controller {
 				String le = new String();
 				le = (result.getString("email"));
 				list_email.add(le);
-	
+
 			}
-	
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		render(list_email);
 	}
 
 	public static void buscarPacienteCPF() {
 		render();
 	}
-	
+
 	public static void buscarPacienteRG() {
-		  render ();
+		render();
 	}
-	
+
 	public static void buscarEmailPaciente() {
-		  render();
+		render();
 	}
 }
