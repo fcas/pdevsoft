@@ -30,7 +30,7 @@ CONTENT="text/html; charset=UTF-8">
 	<div id="principal">
 </br> </br> 
 		<h1>Buscar exame pela data de entrega</h1>
-	<form action="@{DaoExame.showExame_DataPrometida()}" method="POST">
+	<form action="@{ControllerExame.showExame_DataPrometida()}" method="POST">
 		<table>
 		<tr>
 			<td><label>Digite uma data: </label></td>
@@ -52,23 +52,23 @@ CONTENT="text/html; charset=UTF-8">
 
 
 <div id="menu2">
-<ul id="interno"><li><a href="http://localhost:9000/DaoMedicoLaboratorio/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
-<li id="link2"><a like href="http://localhost:9000/DaoMedicoRequisitante/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
-<li><a like href="http://localhost:9000/DaoMedicoRequisitante/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
-<li><a like href="http://localhost:9000/DaoMedicoRequisitante/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br>
+<ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
+<li id="link2"><a like href="http://localhost:9000/ControllerMedico/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
+<li><a like href="http://localhost:9000/ControllerMedico/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
+<li><a like href="http://localhost:9000/ControllerMedico/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br>
 </ul>
-<ul id="interno2"><li><a like href="http://localhost:9000/DaoPaciente/createPaciente"> Cadastrar paciente </a></li></br>
-<li><a like href="http://localhost:9000/DaoPaciente/buscarPacienteRG"> Buscar paciente por RG </a></li></br>
-<li><a like href="http://localhost:9000/DaoPaciente/buscarPacienteCPF"> Buscar paciente por CPF </a></li></br>
-<li><a like href="http://localhost:9000/DaoPaciente/buscarEmailPaciente"> Buscar email do paciente </a></li></br>
+<ul id="interno2"><li><a like href="http://localhost:9000/ControllerPaciente/createPaciente"> Cadastrar paciente </a></li></br>
+<li><a like href="http://localhost:9000/ControllerPaciente/buscarPacienteRG"> Buscar paciente por RG </a></li></br>
+<li><a like href="http://localhost:9000/ControllerPaciente/buscarPacienteCPF"> Buscar paciente por CPF </a></li></br>
+<li><a like href="http://localhost:9000/ControllerPaciente/buscarEmailPaciente"> Buscar email do paciente </a></li></br>
 </ul>
-<ul id="interno3"><li id="link4"><a like href="http://localhost:9000/DaoExame/createExame"> Cadastrar exame </a></li></br>
-<li><a like href="http://localhost:9000/DaoExame/buscarExameID"> Buscar exame por ID </a></li></br>
-<li><a like href="http://localhost:9000/DaoExame/buscarexameDataEntrega"> Buscar exame por data </a></li></br>
-<li><a like href="http://localhost:9000/DaoExame/buscarExameSituacao"> Buscar exame por situação </a></li></br>
-<li><a like href="http://localhost:9000/DaoExame/showExamesEntregues"> Visualizar exames entregues </a></li></br>
-<li><a like href="http://localhost:9000/DaoExame/showExamesNaoEntregues"> Visualizar exames não entregues </a></li></br>
-<li><a like href="http://localhost:9000/DaoExame/showUltimosExames"> Visualizar os ultimos 3 exames cadastrados </a></li></br>
+<ul id="interno3"><li id="link4"><a like href="http://localhost:9000/ControllerExame/createExame"> Cadastrar exame </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/buscarExameID"> Buscar exame por ID </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/buscarexameDataEntrega"> Buscar exame por data </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/buscarExameSituacao"> Buscar exame por situação </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/showExamesEntregues"> Visualizar exames entregues </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/showExamesNaoEntregues"> Visualizar exames não entregues </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/showUltimosExames"> Visualizar os ultimos 3 exames cadastrados </a></li></br>
 </ul>
 <ul id="interno5"><li><a href="#">Quem somos nós</a></li></br>
 			<li><a href="#">Localização</a></li>

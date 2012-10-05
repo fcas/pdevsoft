@@ -17,20 +17,18 @@ CONTENT="text/html; charset=UTF-8">
 <div id="menu">
 		<ul>
 			<li id="med">Medicos
-			<ul id="interno"><li><a href="http://localhost:9000/Application/createMedlab"> Cadastrar Médico de Laboratório </a></li>
-<li id="link2"><a like href="http://localhost:9000/Application/createMedreq"> Cadastrar Médico Requisitante </a></li>
+			<ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/createMedlab"> Cadastrar Médico de Laboratório </a></li>
+<li id="link2"><a like href="http://localhost:9000/ControllerMedico/createMedreq"> Cadastrar Médico Requisitante </a></li>
 			</ul></li>
 			<li id="paciente">Pacientes
-			<ul id="interno2"><li><a like href="http://localhost:9000/Application/createPaciente"> Cadastrar paciente </a></li>
+			<ul id="interno2"><li><a like href="http://localhost:9000/ControllerPaciente/createPaciente"> Cadastrar paciente </a></li>
 			</ul></li>
 			<li id="exame">Exames
 			<ul id="interno3">
-<li id="link4"><a like href="http://localhost:9000/Application/createExame"> Cadastrar exame </a></li>
+<li id="link4"><a like href="http://localhost:9000/ControllerExame/createExame"> Cadastrar exame </a></li>
 			</ul></li>
 			<li id="laudo">Laudos
 			<ul id="interno4">
-<li id="link5"><a like href="http://localhost:9000/Application/createLaudo"> Cadastrar laudo </a></li>
-			</ul></li>
 			<li id="sobre">Sobre
 			<ul id="interno5"><li><a href="#">Quem somos nós</a></li>
 			<li><a href="#">Localização</a></li>
@@ -45,7 +43,7 @@ CONTENT="text/html; charset=UTF-8">
 	<div id="principal">
 </br> </br> 
 		<h1>Editar Exame</h1>
-	<form action="@{Application.doEditExame()}" method="POST">
+	<form action="@{ControllerExame.doEditExame()}" method="POST">
 		<table>
 		<tr>
 			<td><label>Informe o ID do exame</br> a ser modificado:</label></td>
