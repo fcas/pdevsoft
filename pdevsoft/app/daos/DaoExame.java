@@ -20,10 +20,10 @@ public class DaoExame extends Controller {
 
 	private static void conectar() {
 
-		DAOFactory factory;
-		
+		DAOFactory factory = DAOFactory.getDAOFactory(MySQLDAOFactory.MYSQL);
+
 		try {
-			con = MySQLDAOFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
+			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
 					"eplay", MySQLDAOFactory.MYSQL);
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
