@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySQLUserDAO extends DAOFactory {
+public class MySQLDAOFactory extends DAOFactory {
 
 	public static final int MYSQL = 0;
 	private static final String MySQLDriver = "com.mysql.jdbc.Driver";

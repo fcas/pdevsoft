@@ -21,7 +21,7 @@ public class DaoUsuario extends Controller {
 
 	private static void conectar() {
 
-		MySQLDAOFactory factory = DAOFactory.getDAOFactory(MYSQL);
+		DAOFactory factory = factory.getDAOFactory(MYSQL);
 		
 		try {
 			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
