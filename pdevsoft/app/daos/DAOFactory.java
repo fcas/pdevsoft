@@ -1,3 +1,5 @@
+package daos;
+
 import java.sql.Connection;
 
 public abstract class DAOFactory {
