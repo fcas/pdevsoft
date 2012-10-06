@@ -107,6 +107,10 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
+	public static void showExame_ID() {
+		render();
+	}
+	
 	public static void showExame_Entregues() {
 		render();
 	}
