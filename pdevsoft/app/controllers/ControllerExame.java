@@ -107,6 +107,20 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
+	public static void showExame_Entregues() {
+		render();
+	}
+	
+	public static void showExame_NaoEntregues() {
+		render();
+	}
+	
+	public static void showUltimosExames() {
+		render();
+	}
+	
+	
+	
 	public static void Erro() {
 		render();
 	}
