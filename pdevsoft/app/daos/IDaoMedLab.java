@@ -9,15 +9,15 @@ import java.util.List;
 
 public interface IDaoMedLab {
 
-	private static void conectar();
+	public void conectar();
 
-	public static void showMedlab();
+	public void showMedlab();
 
-	public static void doCreateMedlab(MedicoLab medicolab);
+	public void doCreateMedlab(MedicoLab medicolab);
 
-	public static void createMedlab();
+	public void createMedlab();
 
-	public static void Erro();
+	public void Erro();
 
 	// public void criarMedLab(MedicoLab medLab);
 	// public void deletarMedLab(MedicoLab medLab);

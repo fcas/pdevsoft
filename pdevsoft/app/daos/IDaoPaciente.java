@@ -5,36 +5,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.*;
+
 public interface IDaoPaciente {
 
-	private static void conectar();
+	public void conectar();
 
-	public static void doCreatePaciente(Paciente paciente);
+	public void doCreatePaciente(Paciente paciente);
 
-	public static void createPaciente();
+	public void createPaciente();
 
-	public static void doDeletePaciente(Paciente paciente);
+	public void doDeletePaciente(Paciente paciente);
 
-	public static void deletePaciente();
+	public void deletePaciente();
 
-	public static void doEditPaciente(Paciente paciente);
+	public void doEditPaciente(Paciente paciente);
 
-	public static void editPaciente();
+	public void editPaciente();
 
-	public static void showPaciente();
+	public void showPaciente();
 
-	public static void Erro();
+	public void Erro();
 
-	public static void showPaciente_RG(String RG);
+	public void showPaciente_RG(String RG);
 
-	public static void showPaciente_CPF(String CPF);
+	public void showPaciente_CPF(String CPF);
 
-	public static void showEmail_Paciente(int ID);
+	public void showEmail_Paciente(int ID);
 
-	public static void buscarPacienteCPF();
+	public void buscarPacienteCPF();
 
-	public static void buscarPacienteRG();
+	public void buscarPacienteRG();
 
-	public static void buscarEmailPaciente();
+	public void buscarEmailPaciente();
 
 }

@@ -1,15 +1,16 @@
 package daos;
 
 import java.sql.SQLException;
+import models.*;
 
 public interface IDaoUsuario {
 
-	private static void conectar();
+	public void conectar();
 
-	public static void doCreateUser(Usuarios usuarios);
+	public void doCreateUser(Usuarios usuarios);
 
-	public static void createUser();
+	public void createUser();
 
-	public static void Erro();
+	public void Erro();
 
 }

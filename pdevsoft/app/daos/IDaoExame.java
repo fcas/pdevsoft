@@ -8,39 +8,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IDaoExame {
-	private static void conectar();
+	public void conectar();
 
-	public static void doCreateExame(Exame exame);
+	public void doCreateExame(Exame exame);
 
-	public static void createExame();
+	public void createExame();
 
-	public static void createExame();
+	public void createExame();
 
-	public static void doEditExame(Exame exame);
+	public void doEditExame(Exame exame);
 
-	public static void editExame();
+	public void editExame();
 
-	public static void showExame();
+	public void showExame();
 
-	public static void showExame_DataPrometida(String date);
+	public void showExame_DataPrometida(String date);
 
-	public static void showExame_Situacao(String situacao);
+	public void showExame_Situacao(String situacao);
 
-	public static void showExame_ID(int ID);
+	public void showExame_ID(int ID);
 
-	public static void buscarExameID();
+	public void buscarExameID();
 
-	public static void buscarExameSituacao();
+	public void buscarExameSituacao();
 
-	public static void buscarexameDataEntrega();
+	public void buscarexameDataEntrega();
 
-	public static void showUltimosExames();
+	public void showUltimosExames();
 
-	public static void showExamesEntregues();
+	public void showExamesEntregues();
 
-	public static void showExamesNaoEntregues();
+	public void showExamesNaoEntregues();
 
-	public static void Erro();
+	public void Erro();
 	// public void criarExame(Exame exame);
 	// public void deletarExame(Exame exame);
 	// public void editarExame(Exame exame);

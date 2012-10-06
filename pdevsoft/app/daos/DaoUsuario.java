@@ -18,7 +18,7 @@ public class DaoUsuario extends Controller {
 	private static Connection con;
 	private static Statement comando;
 
-	private static void conectar() {
+	public static void conectar() {
 
 		DAOFactory factory;
 		
