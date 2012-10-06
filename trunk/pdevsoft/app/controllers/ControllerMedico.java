@@ -24,6 +24,9 @@ public class ControllerMedico extends Controller {
 	 Em nenhum dos controller eu implementei essa verificação, então FACAM ISSO!!
 	 */
 	
+	/*Falta o método buscarMedPacienteID, após criá-lo, alterar nos htmls
+	 */
+	
 	public ControllerMedico(IDaoMedLab daoMedLab, IDaoMedReq daoMedReq) {
 		this.daoMedLab = daoMedLab;
 		this.daoMedReq = daoMedReq;
