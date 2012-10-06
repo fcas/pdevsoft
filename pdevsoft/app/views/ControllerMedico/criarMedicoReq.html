@@ -1,11 +1,11 @@
 <!--#{extends 'main.html' /}
-#{set title:'Remover Paciente' /}
+#{set title:'Cadastro de Pacientes' /}
 -->
 <head>
-<link rel="stylesheet"media="screen" href="style.css">
+<link rel="stylesheet" type="text/css" href="cadastrop.css">
 <script type="text/javascript" src="jquery.js"></script> 
-
-<script type="text/javascript" src="style.js"></script>
+<script type="text/javascript" src="slider.js"></script> 
+<script type="text/javascript" src="cadastro.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
@@ -28,33 +28,49 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="content">
 	<div id="principal">
-</br> </br> 
-		<h1>Buscar exame pela situação</h1>
-	<form action="@{ControllerExame.showExame_Situacao()}" method="POST">
+		<h1>Cadastrar Médico Requisitante</h1>
+	<form action="@{ControllerMedico.docriarMedicoReq()}" method="POST">
 		<table>
 		<tr>
-			<td><label>Digite a situação: </label></td>
+			<td><label>CRM: </label></td>
 			<td><p class="field">
-				<input type="text" name="situacao"/>
+				<input type="text" name="medicoreq.CRMR"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Nome: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.nome"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Telefone: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.telefone"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.email"/>
 				</p></td>
 		</tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar"/>
+			<td></td><td><input type="submit" name="create" value="Salvar dados"/>
 			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>
  <p>
-
+</form>
 </div>
 
 
 <div id="menu2">
-<ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
-<li id="link2"><a like href="http://localhost:9000/ControllerMedico/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
-<li><a like href="http://localhost:9000/ControllerMedico/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
+<ul id="interno"><li><a href="http://localhost:9000/ControllerMedicoLaboratorio/criarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
+<li id="link2"><a like href="http://localhost:9000/ControllerMedico/criarMedicoReq"> Cadastrar Médico Requisitante </a></li></br>
+<li><a like href="http://localhost:9000/ControllerMedico/buscarMedicoReq"> Buscar Médico Requisitante a partir do exame </a></li></br>
 <li><a like href="http://localhost:9000/ControllerMedico/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br>
 </ul>
 <ul id="interno2"><li><a like href="http://localhost:9000/ControllerPaciente/criarPaciente"> Cadastrar paciente </a></li></br>
@@ -76,8 +92,10 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
+
 </div>
 
 <div id="footer">
  © Copyright AndFeLa 2012
 </div>
+

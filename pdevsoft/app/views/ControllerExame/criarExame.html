@@ -28,30 +28,73 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="content">
 	<div id="principal">
-		<h1>Cadastrar Médico Requisitante</h1>
-	<form action="@{ControllerMedico.doCreateMedreq()}" method="POST">
+		<h1>Cadastrar exame</h1>
+	<form action="@{ControllerExame.docriarExame()}" method="POST">
 		<table>
 		<tr>
-			<td><label>CRM: </label></td>
+			<td><label>ID: </label></td>
 			<td><p class="field">
-				<input type="text" name="medicoreq.CRMR"/>
+				<input type="text" name="exame.ID"/>
 				</p></td>
 		</tr>
 		<tr>
-			<td><label>Nome: </label></td>
+			<td><label>ID Material: </label></td>
 			<td><p class="field">
-				<input type="text" name="medicoreq.nome"/>
+				<input type="text" name="exame.ID_material"/>
 				</p></td>
 		</tr>
-		<tr>
-			<td><label>Telefone: </label></td>
+			<tr>
+			<td><label>Situação: </label></td>
 			<td><p class="field">
-				<input type="text" name="medicoreq.telefone"/>
+				<input type="text" name="exame.situacao"/>
 				</p></td>
 		</tr><tr>
-			<td><label>Email: </label></td>
+			<td><label>Data da requisição: </label></td>
 			<td><p class="field">
-				<input type="text" name="medicoreq.email"/>
+				<input type="text" name="exame.datarec"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Data da entrega: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.dataentrega"/>
+				</p></td>
+		</tr><tr>
+			<td><label>ID Paciente: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID_paciente"/>
+				</p></td>
+		</tr><tr>
+			<td><label>CRM Requisitante: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.CRMR"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>CRM Médico do Laboratório: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.CRML"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Resultado: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.resultado"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Analise Macro: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.Analise_macro"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Análise Micro: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.Analise_micro"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.observacoes"/>
 				</p></td>
 		</tr>
 		<tr><td></td><td></td></td></tr>
@@ -68,9 +111,9 @@ CONTENT="text/html; charset=UTF-8">
 
 
 <div id="menu2">
-<ul id="interno"><li><a href="http://localhost:9000/ControllerMedicoLaboratorio/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
-<li id="link2"><a like href="http://localhost:9000/ControllerMedico/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
-<li><a like href="http://localhost:9000/ControllerMedico/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
+<ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/criarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
+<li id="link2"><a like href="http://localhost:9000/ControllerMedico/criarMedicoReq"> Cadastrar Médico Requisitante </a></li></br>
+<li><a like href="http://localhost:9000/ControllerMedico/buscarMedicoReq"> Buscar Médico Requisitante a partir do exame </a></li></br>
 <li><a like href="http://localhost:9000/ControllerMedico/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br>
 </ul>
 <ul id="interno2"><li><a like href="http://localhost:9000/ControllerPaciente/criarPaciente"> Cadastrar paciente </a></li></br>
