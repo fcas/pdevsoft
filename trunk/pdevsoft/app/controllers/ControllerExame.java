@@ -119,6 +119,10 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
+	public static void showExame_DataPrometida() {
+		render();
+	}
+	
 	public static void showUltimosExames() {
 		render();
 	}
