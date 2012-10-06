@@ -14,95 +14,74 @@ import javax.persistence.Id;
 import models.*;
 
 
-public class DaoMedicoLaboratorio extends Controller {
-	
+public class DaoMedicoLaboratorio implements IDaoMedLab {
+	/*TANTO AQUI QUANTO EM MEDICO REQUISITANTE ESTA FALTANDO
+	 * IMPLEMENTAR OS METODOS LISTAR E BUSCAR. 
+	 * POR FAVOR, FACAM ISSO! Deve ter o código SQL
+	 * naquele DOCS que a gente tinha. Anderson sabe qual é
+	 * 
+	 */
 	private static Connection con;
 	private static Statement comando;
 
-	public static void conectar() {
+	private void conectar() {
 
-		DAOFactory factory;
-		
 		try {
-			con = MySQLDAOFactory.conexao("jdbc:mysql://localhost/eplay", "eplay",
+			con = ConnectMySQL.conexao("jdbc:mysql://localhost/eplay", "eplay",
 					"eplay", MySQLDAOFactory.MYSQL);
+			comando = con.createStatement();
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
-			comando = con.createStatement();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Conectado!");
-
-	}
-	
-	public static void showMedlab() {
-
-		conectar();
-		List<MedicoLab> list_medico = new ArrayList<MedicoLab>();
-		ResultSet result;
-
-		try {
-			result = comando
-					.executeQuery("SELECT * FROM MedicoLab ORDER BY nome");
-			while (result.next()) {
-				MedicoLab le = new MedicoLab();
-				le.setCRML(result.getInt("CRML"));
-				le.setNome(result.getString("observacoes"));
-				le.setEmail(result.getString("situacao"));
-				le.setTelefone(result.getString("datarec"));
-				list_medico.add(le);
-
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		render(list_medico);
 	}
 
-	public static void doCreateMedlab(MedicoLab medicolab) {
-		conectar();
-		ResultSet result1 = null;
+	public void criarMedLab (MedicoLab medicolab) {
+
 		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
-					+ medicolab.CRML);
 		
-		String insert_medico = "INSERT INTO MedicoLab VALUES ("
-				+ medicolab.CRML + ",'" + medicolab.nome + "','"
-				+ medicolab.email + "','" + medicolab.telefone + "')";
+			String insert_medico = "INSERT INTO MedicoLab VALUES ("
+					+ medicolab.CRML + ",'" + medicolab.nome + "','"
+					+ medicolab.email + "','" + medicolab.telefone + "')";
 
-		if (medicolab.CRML != 0 && !result1.next()) {
-			System.out.println("entrou aqui");
 			conectar();
 			comando.executeUpdate(insert_medico);
-			showMedlab();
-		} else {
-			System.out.println("entrou erro");
-			Erro();
-		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
-	public static void createMedlab() {
-		render();
-	}
+	public void apagarMedLab (MedicoLab medicolab) {
 
-	public static void Erro() {
-		render();
+		String apagar_medico = "DELETE FROM MedicoLab WHERE CRML = "
+				+ medicolab.CRML + ";";
+		try {
+			conectar();
+			comando.executeUpdate(apagar_medico);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editarMedLab (MedicoLab medicolab) {//AJEITAR O UPDATE AQUI E EM MEDICOREQ
+
+		String apagar_medico = "UPDATE FROM MedicoLab WHERE CRML = "
+				+ medicolab.CRML + ";";
+		try {
+			conectar();
+			comando.executeUpdate(apagar_medico);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<MedicoLab> listarMedicosLab() {
+		return null;
+	}
+	
+	public MedicoLab buscarMedicoLab(int CRML) {
+		return null;
 	}
 	
 }

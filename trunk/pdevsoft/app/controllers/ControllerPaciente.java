@@ -13,55 +13,83 @@ import javax.persistence.Id;
 
 import models.*;
 import daos.*;
-//fazer as verificacoes!!!
+
 public class ControllerPaciente extends Controller {
-	IDaoPaciente daoPaciente;
+	public static IDaoPaciente daoPaciente;
 	
 	public ControllerPaciente(IDaoPaciente daoPaciente) {
 		this.daoPaciente = daoPaciente;
 	}
 	
-	public static void doCreatePaciente(Paciente paciente) {
-		daoPaciente.doCreatePaciente(paciente);
-	}
-
-	public static void doDeletePaciente(Paciente paciente) {
-		daoPaciente.doDeletePaciente(paciente);
-	}
-
-	public static void doEditPaciente(Paciente paciente) {
-		daoPaciente.doEditPaciente(paciente);
-	}
-
-	public static void showPaciente(Paciente paciente) {//verificar
-		daoPaciente.showPaciente(paciente);
-	}
-
-	public static void Erro() {
+	public static void criarPaciente(Paciente paciente) {
 		
+		if (paciente.ID != 0) {
+			if (daoPaciente.buscarPaciente(paciente.ID) == null) {
+				daoPaciente.criarPaciente(paciente);
+				showPaciente();
+			} else {
+				Erro();
+			}	
+		} else {
+			Erro();
+		}
 	}
 
-	public static void showPaciente_RG(String RG) {
+	public static void apagarPaciente(Paciente paciente) {
 		
+		if (paciente.ID != 0) {
+			if (daoPaciente.buscarPaciente(paciente.ID) != null) {
+				daoPaciente.apagarPaciente(paciente);
+				showPaciente();
+			} else {
+				Erro();
+			}	
+		} else {
+			Erro();
+		}
 	}
 
-	public static void showPaciente_CPF(String CPF) {
-		
+	public static void editarPaciente(Paciente paciente) {
+		if (paciente.ID != 0) {
+			if (daoPaciente.buscarPaciente(paciente.ID) != null) {
+				daoPaciente.editarPaciente(paciente);
+				showPaciente();
+			} else {
+				Erro();
+			}	
+		} else {
+			Erro();
+		}
 	}
 
-	public static void showEmail_Paciente(int ID) {
-
+	public static void buscarPaciente(int ID) {
+		Paciente paciente = new Paciente();
+		paciente = daoPaciente.buscarPaciente(ID);
+		render(paciente);
 	}
 
-	public static void buscarPacienteCPF() {
+	public static void buscarPacienteCPF(String CPF) {
+		Paciente paciente = new Paciente();
+		paciente = daoPaciente.buscarPacienteCPF(CPF);
+		render(paciente);
+	}
+
+	public static void buscarPacienteRG(String RG) {
+		Paciente paciente = new Paciente();
+		paciente = daoPaciente.buscarPacienteRG(RG);
+		render(paciente);
+	}
 	
+	public static void showPaciente() {
+		render();
 	}
-
-	public static void buscarPacienteRG() {
-		
+	
+	public static void showCriarPaciente() {
+		render();
 	}
-
-	public static void buscarEmailPaciente() {
-	}	
+	
+	public static void Erro() {
+		render();
+	}
 
 }

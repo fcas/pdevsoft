@@ -1,0 +1,112 @@
+<!--#{extends 'main.html' /}
+#{set title:'Remover Paciente' /}
+-->
+<html>
+
+<head>
+<link rel="stylesheet"media="screen" href="style.css">
+<script type="text/javascript" src="jquery.js"></script> 
+
+<script type="text/javascript" src="style.js"></script>
+<meta HTTP-EQUIV="Content-Type"
+CONTENT="text/html; charset=UTF-8">
+</head>
+
+<div id="header">
+<h1 id="m1">MedLab</h1>
+</div>
+
+<div id="menu">
+		<ul>
+			<li id="med">Medicos</li>
+			<li id="paciente">Pacientes</li>
+			<li id="exame">Exames</li>
+			<li id="sobre">Sobre</li>
+			<li id="contato">Contato</li>
+			<li id="contato">Ajuda</li>
+		</ul>
+</div>
+
+
+<body>
+<div id="content">
+	
+	<div id="principal">
+	<h1>Paciente</h1>
+	#{list items: list_paciente, as : 'p'}
+		<table>
+		<tr>
+			<td><label>ID: </label></td>
+			<td>${p.ID}</td>
+		</tr>
+		<tr>
+			<td><label>Nome: </label></td>
+			<td>${p.nome}</td>
+		</tr>
+		<tr>
+			<td><label>Endereço: </label></td>
+			<td>${p.endereco}</td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td>${p.email}</td>
+		</tr><tr>
+			<td><label>Telefone: </label></td>
+			<td>${p.telefone}</td>
+		</tr><tr>
+			<td><label>Data de nascimento: </label></td>
+			<td>${p.datanasc}</td>
+		</tr><tr>
+			<td><label>Estado civil: </label></td>
+			<td>${p.estadocivil}</td>
+		</tr><tr>
+			<td><label>Sexo: </label></td>
+			<td> ${p.sexo}</td>
+		</tr><tr>
+			<td><label>CPF: </label></td>
+			<td>${p.cpf}</td>
+		</tr><tr>
+			<td><label>RG: </label></td>
+			<td>${p.rg}</td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td>${p.observacoes}</td>
+		</tr>
+		#{/list}
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+</form>
+</div>
+
+<div id="menu2">
+<ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/createMedlab"> Cadastrar Médico de Laboratório </a></li></br>
+<li id="link2"><a like href="http://localhost:9000/ControllerMedico/createMedreq"> Cadastrar Médico Requisitante </a></li></br>
+<li><a like href="http://localhost:9000/ControllerMedico/buscarMedicoReqExameId"> Buscar Médico Requisitante a partir do exame </a></li></br>
+<li><a like href="http://localhost:9000/ControllerMedico/buscarMedPacienteID"> Buscar Médico Requisitante a partir do paciente </a></li></br>
+</ul>
+<ul id="interno2"><li><a like href="http://localhost:9000/ControllerPaciente/createPaciente"> Cadastrar paciente </a></li></br>
+<li><a like href="http://localhost:9000/ControllerPaciente/buscarPacienteRG"> Buscar paciente por RG </a></li></br>
+<li><a like href="http://localhost:9000/ControllerPaciente/buscarPacienteCPF"> Buscar paciente por CPF </a></li></br>
+<li><a like href="http://localhost:9000/ControllerPaciente/buscarEmailPaciente"> Buscar email do paciente </a></li></br>
+</ul>
+<ul id="interno3"><li id="link4"><a like href="http://localhost:9000/ControllerExame/createExame"> Cadastrar exame </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/buscarExameID"> Buscar exame por ID </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/buscarexameDataEntrega"> Buscar exame por data </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/buscarExameSituacao"> Buscar exame por situação </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/showExamesEntregues"> Visualizar exames entregues </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/showExamesNaoEntregues"> Visualizar exames não entregues </a></li></br>
+<li><a like href="http://localhost:9000/ControllerExame/showUltimosExames"> Visualizar os ultimos 3 exames cadastrados </a></li></br>
+</ul>
+<ul id="interno5"><li><a href="#">Quem somos nós</a></li></br>
+			<li><a href="#">Localização</a></li>
+			</ul>
+</div>
+
+
+</body>
+</html>
