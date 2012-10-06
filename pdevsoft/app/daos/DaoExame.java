@@ -14,16 +14,14 @@ import javax.persistence.Id;
 import models.*;
 
 
-public class DaoExame extends Controller {
+public class DaoExame implements IDaoExame {
 	private static Connection con;
 	private static Statement comando;
 
-	public static void conectar() {
-
-		DAOFactory factory = DAOFactory.getDAOFactory(MySQLDAOFactory.MYSQL);
-
+	private void conectar() {
+		
 		try {
-			con = factory.conexao("jdbc:mysql://localhost/eplay", "eplay",
+			con = ConnectMySQL.conexao("jdbc:mysql://localhost/eplay", "eplay",
 					"eplay", MySQLDAOFactory.MYSQL);
 			comando = con.createStatement();
 		} catch (ClassNotFoundException e1) {
@@ -31,32 +29,13 @@ public class DaoExame extends Controller {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//System.out.println("Conectado!");
-
 	}
 
-	public static void doCreateExame(Exame exame) {
-		conectar();
-		ResultSet result1 = null;
-		ResultSet result2 = null;
-		ResultSet result3 = null;
-		ResultSet result4 = null;
+	public void criarExame (Exame exame) {
 		
 		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
-					+ exame.ID);
-		conectar();
-		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
-				+ exame.ID_paciente);
-		conectar();
-		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
-				+ exame.CRML);
-		conectar();
-		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
-				+ exame.CRMR);
 		
-		String insert_exame = "INSERT INTO ExameLaudo VALUES ("
+			String insert_exame = "INSERT INTO ExameLaudo VALUES ("
 				+ exame.ID + "," 
 				+ exame.ID_material + ",'" 
 				+ exame.situacao + "','"
@@ -68,53 +47,18 @@ public class DaoExame extends Controller {
 				+ exame.Resultado + "','"
 				+ exame.Analise_macro + "','"
 				+ exame.Analise_micro + "','"
-				+ exame.observacoes + "')";
-		
-		
-		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
-			System.out.println("entrou aqui");
+				+ exame.observacoes + "')";			
+			
 			conectar();
 			comando.executeUpdate(insert_exame);
-			showExame();
-		} else {
-			System.out.println("entrou erro");
-			Erro();
-		}
-		
-			
 	
-		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 
-	public static void createExame() {
-		render();
-	}
-
-	public static void doEditExame(Exame exame) {
-		conectar();
-		ResultSet result1 = null;
-		ResultSet result2 = null;
-		ResultSet result3 = null;
-		ResultSet result4 = null;
-		
-		try {
-			
-		result1 = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
-					+ exame.ID);
-		conectar();
-		result2 = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
-				+ exame.ID_paciente);
-		conectar();
-		result3 = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
-				+ exame.CRML);
-		conectar();
-		result4 = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
-				+ exame.CRMR);
+	public void editarExame(Exame exame) {
 		
 		String insert_exame = "UPDATE ExameLaudo SET "
 				+ "ID_material=" + exame.ID_material
@@ -129,27 +73,27 @@ public class DaoExame extends Controller {
 				+ "',analise_micro='" + exame.Analise_micro
 				+ "',observacoes='" + exame.observacoes
 				+ "' WHERE ID=" + exame.ID;
-		
-		
-		if (exame.ID != 0 && !result1.next() && result2.next() && result3.next() && result4.next()) {
-			System.out.println("entrou aqui");
+		try {	
 			conectar();
 			comando.executeUpdate(insert_exame);
-			showExame();
-		} else {
-			System.out.println("entrou erro");
-			Erro();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
+	
+	public void apagarExame(Exame exame) {
+		
+		String remove_exame = "DELETE FROM ExameLaudo WHERE ID = "
+				+ exame.ID + ";";
+		try {	
+			conectar();
+			comando.executeUpdate(remove_exame);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void editExame() {
-		render();
-	}
-
-	public static void showExame() {
+	public List<Exame> listarExames() {
 
 		conectar();
 		List<Exame> list_exame = new ArrayList<Exame>();
@@ -179,21 +123,20 @@ public class DaoExame extends Controller {
 			e.printStackTrace();
 		}
 
-		render(list_exame);
+		return list_exame;
 
 	}
 
-	public static void showExame_DataPrometida(String date) {
-		conectar();
-		List<Exame> list_exame = new ArrayList<Exame>();
-		ResultSet result;
+	public Exame buscarExame_DataPrometida(String data) {
+		Exame le = new Exame();
+		ResultSet result = null;
 
 		try {
+			conectar();
 			result = comando
 					.executeQuery("SELECT * FROM ExameLaudo WHERE dataentrega = "
-							+ date);
-			while (result.next()) {
-				Exame le = new Exame();
+							+ data);
+			if (result != null) {
 				le.setID(result.getInt("ID"));
 				le.setID_material(result.getInt("ID_material"));
 				le.setSituacao(result.getString("situacao"));
@@ -206,27 +149,27 @@ public class DaoExame extends Controller {
 				le.setAnalise_macro(result.getString("analise_macro"));
 				le.setAnalise_micro(result.getString("analise_micro"));
 				le.setObservacoes(result.getString("observacoes"));
-				list_exame.add(le);
+			} else {
+				return null;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		render(list_exame);
+		return le;
 	}
 	
-	public static void showExame_Situacao(String situacao) {
-		conectar();
-		List<Exame> list_exame = new ArrayList<Exame>();
-		ResultSet result;
-
+	public Exame buscarExame_Situacao(String situacao) {
+		ResultSet result = null;
+		Exame le = new Exame();
+		
 		try {
+			conectar();
 			result = comando
 					.executeQuery("SELECT * FROM ExameLaudo WHERE situacao = "
 							+ situacao);
-			while (result.next()) {
-				Exame le = new Exame();
+			if (result != null) {
 				le.setID(result.getInt("ID"));
 				le.setID_material(result.getInt("ID_material"));
 				le.setSituacao(result.getString("situacao"));
@@ -239,70 +182,61 @@ public class DaoExame extends Controller {
 				le.setAnalise_macro(result.getString("analise_macro"));
 				le.setAnalise_micro(result.getString("analise_micro"));
 				le.setObservacoes(result.getString("observacoes"));
-				list_exame.add(le);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		render(list_exame);
-	}
-	
-	public static void showExame_ID(int ID) {
-
-		conectar();
-		List<Exame> list_exame = new ArrayList<Exame>();
-		ResultSet result;
-
-		try {
-			result = comando.executeQuery("SELECT * FROM Exame WHERE ID = "
-					+ ID);
-			while (result.next()) {
-				Exame le = new Exame();
-				le.setID(result.getInt("ID"));
-				le.setID_material(result.getInt("ID_material"));
-				le.setSituacao(result.getString("situacao"));
-				le.setDatarec(result.getString("datarec"));
-				le.setDataentrega(result.getString("dataentrega"));
-				le.setID_paciente(result.getInt("ID_paciente"));
-				le.setCRMR(result.getInt("CRMR"));
-				le.setCRML(result.getInt("CRML"));
-				le.setResultado(result.getString("resultado"));
-				le.setAnalise_macro(result.getString("analise_macro"));
-				le.setAnalise_micro(result.getString("analise_micro"));
-				le.setObservacoes(result.getString("observacoes"));
-				list_exame.add(le);
-
+			} else {
+				return null;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		render(list_exame);
+		return le;
+	}
+	
+	public Exame buscarExame_ID(int ID) {
+
+		ResultSet result = null;
+		Exame le = new Exame();
+		
+		try {
+			conectar();
+			result = comando
+					.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
+							+ ID);
+			if (result != null) {
+				le.setID(result.getInt("ID"));
+				le.setID_material(result.getInt("ID_material"));
+				le.setSituacao(result.getString("situacao"));
+				le.setDatarec(result.getString("datarec"));
+				le.setDataentrega(result.getString("dataentrega"));
+				le.setID_paciente(result.getInt("ID_paciente"));
+				le.setCRMR(result.getInt("CRMR"));
+				le.setCRML(result.getInt("CRML"));
+				le.setResultado(result.getString("resultado"));
+				le.setAnalise_macro(result.getString("analise_macro"));
+				le.setAnalise_micro(result.getString("analise_micro"));
+				le.setObservacoes(result.getString("observacoes"));
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return le;
 
 	}
 	
-	public static void buscarExameID() {
-		  render ();
-		 }
-	
-	public static void buscarExameSituacao() {
-		  render();
-		 }
-	
-	public static void buscarexameDataEntrega () {
-		  render();
-		 }
-	
-	public static void showUltimosExames () {
+	public List<Exame> buscarUltimosExames () {
 
-		conectar();
 		List<Exame> list_exame = new ArrayList<Exame>();
-		ResultSet result;
+		ResultSet result = null;
 
 		try {
+			conectar();
 			result = comando.executeQuery("select * from ultimoExame");
+			
 			while (result.next()) {
 				Exame le = new Exame();
 				le.setID(result.getInt("ID"));
@@ -325,80 +259,76 @@ public class DaoExame extends Controller {
 			e.printStackTrace();
 		}
 
-		render(list_exame);
+		return list_exame;
 		
 	}
 	
-	public static void showExamesEntregues () {
-
-		conectar();
-		List<Exame> list_exame = new ArrayList<Exame>();
-		ResultSet result;
-
-		try {
-			result = comando.executeQuery("select * from examesEntregues");
-			while (result.next()) {
-				Exame le = new Exame();
-				le.setID(result.getInt("ID"));
-				System.out.println(result.getInt("ID"));
-				le.setID_material(result.getInt("ID_material"));
-				le.setSituacao(result.getString("situacao"));
-				le.setDatarec(result.getString("datarec"));
-				le.setDataentrega(result.getString("dataentrega"));
-				le.setID_paciente(result.getInt("ID_paciente"));
-				le.setCRMR(result.getInt("CRMR"));
-				le.setCRML(result.getInt("CRML"));
-				le.setResultado(result.getString("resultado"));
-				le.setAnalise_macro(result.getString("analise_macro"));
-				le.setObservacoes(result.getString("observacoes"));
-				list_exame.add(le);
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		render(list_exame);
-		
-	}
-	
-	public static void showExamesNaoEntregues () {
-
-		conectar();
-		List<Exame> list_exame = new ArrayList<Exame>();
-		ResultSet result;
-
-		try {
-			result = comando.executeQuery("select * from examesNaoEntregues");
-			while (result.next()) {
-				Exame le = new Exame();
-				le.setID(result.getInt("ID"));
-				System.out.println(result.getInt("ID"));
-				le.setID_material(result.getInt("ID_material"));
-				le.setSituacao(result.getString("situacao"));
-				le.setDatarec(result.getString("datarec"));
-				le.setDataentrega(result.getString("dataentrega"));
-				le.setID_paciente(result.getInt("ID_paciente"));
-				le.setCRMR(result.getInt("CRMR"));
-				le.setCRML(result.getInt("CRML"));
-				le.setResultado(result.getString("resultado"));
-				le.setAnalise_macro(result.getString("analise_macro"));
-				le.setObservacoes(result.getString("observacoes"));
-				list_exame.add(le);
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		render(list_exame);
-		
-	}
-	
-	public static void Erro() {
-		render();
-	}
+//	public List<Exame> showExamesEntregues () {
+//
+//		List<Exame> list_exame = new ArrayList<Exame>();
+//		ResultSet result = null;
+//
+//		try {
+//			conectar();
+//			result = comando.executeQuery("select * from examesEntregues");
+//			while (result.next()) {
+//				Exame le = new Exame();
+//				le.setID(result.getInt("ID"));
+//				System.out.println(result.getInt("ID"));
+//				le.setID_material(result.getInt("ID_material"));
+//				le.setSituacao(result.getString("situacao"));
+//				le.setDatarec(result.getString("datarec"));
+//				le.setDataentrega(result.getString("dataentrega"));
+//				le.setID_paciente(result.getInt("ID_paciente"));
+//				le.setCRMR(result.getInt("CRMR"));
+//				le.setCRML(result.getInt("CRML"));
+//				le.setResultado(result.getString("resultado"));
+//				le.setAnalise_macro(result.getString("analise_macro"));
+//				le.setObservacoes(result.getString("observacoes"));
+//				list_exame.add(le);
+//
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return list_exame;
+//		
+//	}
+//	
+//	public List<Exame> showExamesNaoEntregues () {
+//
+//		List<Exame> list_exame = new ArrayList<Exame>();
+//		ResultSet result = null;
+//
+//		try {
+//			conectar();
+//			result = comando.executeQuery("select * from examesNaoEntregues");
+//			while (result.next()) {
+//				Exame le = new Exame();
+//				le.setID(result.getInt("ID"));
+//				System.out.println(result.getInt("ID"));
+//				le.setID_material(result.getInt("ID_material"));
+//				le.setSituacao(result.getString("situacao"));
+//				le.setDatarec(result.getString("datarec"));
+//				le.setDataentrega(result.getString("dataentrega"));
+//				le.setID_paciente(result.getInt("ID_paciente"));
+//				le.setCRMR(result.getInt("CRMR"));
+//				le.setCRML(result.getInt("CRML"));
+//				le.setResultado(result.getString("resultado"));
+//				le.setAnalise_macro(result.getString("analise_macro"));
+//				le.setObservacoes(result.getString("observacoes"));
+//				list_exame.add(le);
+//
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return list_exame;
+//		
+//	}
 	
 }

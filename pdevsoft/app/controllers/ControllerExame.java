@@ -12,22 +12,103 @@ import java.util.*;
 import javax.persistence.Id;
 
 import models.*;
+import daos.*;
 
 public class ControllerExame extends Controller {
+	/*Meninos, a classe controller paciente t√° certinha, ent√£o as outras praticamente v√£o seguir
+	 * o mesmo modelo. Nessas classes de controller, um probleminha que t√°.
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	public static IDaoExame daoExame;//o controller s√≥ fala com a interface, por isso que t√° declarado aqui
+	public static IDaoPaciente daoPaciente;
+	public static IDaoMedLab daoMedLab;
+	public static IDaoMedReq daoMedReq;
 	
+	public ControllerExame(IDaoExame daoExame, IDaoPaciente daoPaciente, IDaoMedLab daoMedLab, IDaoMedReq daoMedReq) {//a interface √© passada pelo construtor, s√≥ que nesse caso, vai ter que passar a de paciente e medico tamb√©m
+		//porque Exame tem as chaves estrangeiras deles, ent√£o √© necess√°rio pra fazer a verifica√ß√£o
+		this.daoExame = daoExame;
+		this.daoPaciente = daoPaciente;
+		this.daoExame = daoExame;
+		this.daoMedLab = daoMedLab;
+		this.daoMedReq = daoMedReq;
+	}
 	
-	public static void doCreateExame(Exame exame) {
-		/*
-		 * esse mÈtodo vai receber uma inst‚ncia de exame.
-		 * Esse exame deve ser analisado junto ao banco de dados para saber: 
-		 * 1-Se j· existe algum exame com esse ID,
-		 * 2-Se esse o paciente indicado j· foi criado no banco,
-		 * 3-Se o Medico de Laboratorio indicado j· foi criado no banco,
-		 * 4-Se o Medico Requisitante indicado j· foi criado no banco.
-		 * Para isso faremos 4 buscas nos DAOs respectivos para confirmar
-		 * 		esses dados antes de chamar o DAO para inserÁ„o. 
-		 * Depois de inserir, chama a p·gina de renderizar o html de "sucesso"
-		 */
+	public static void criarExame (Exame exame) {
+	
+		if (exame.ID != 0) { //testa se o ID √© vazio
+			//verificacao se o ID do exame n√£o existe e os demais campos relacionados a outras entidades existem
+			if ((daoExame.buscarExame_ID(exame.ID) == null) && (daoPaciente.buscarPaciente(exame.ID_paciente) != null) 
+					&& (daoMedLab.buscarMedicoLab(exame.CRML) != null) && (daoMedReq.buscarMedicoReq(exame.CRMR) != null)) {
+				daoExame.criarExame(exame);
+				showExame();//esse showExame() eu botei mas a gente tem que ajeitar as coisas do HTML ainda, ent√£o provavelmente vai mudar.
+			} else {
+				Erro();
+			}	
+		} else {
+			Erro();
+		}
+	}
+	
+	public static void editarExame (Exame exame) {
+
+		if (exame.ID != 0) {
+			if ((daoExame.buscarExame_ID(exame.ID) != null)) {	//o exame tem que existir para ser editado	
+				daoExame.editarExame(exame);
+				showExame();
+			} else {
+				Erro();
+			}	
+		} else {
+			Erro();
+		}
+	}
+	
+	public static void apagarExame (Exame exame) {
+		if (exame.ID != 0) {
+			if ((daoExame.buscarExame_ID(exame.ID) != null)) {	//o exame tem que existir para ser apagado
+				daoExame.apagarExame(exame);
+				showExame();
+			} else {
+				Erro();
+			}	
+		} else {
+			Erro();
+		}
+	}
+	
+	public static void buscarExame_DataPrometida(String data) {
+		Exame exame = new Exame();
+		exame = daoExame.buscarExame_DataPrometida(data);
+		render(exame);
+	}
+	
+	public static void buscarExame_Situacao(String situacao) {
+		Exame exame = new Exame();
+		exame = daoExame.buscarExame_Situacao(situacao);
+		render(exame);
+	}
+	
+	public static void buscarExame_ID(int ID) {
+		Exame exame = new Exame();
+		exame = daoExame.buscarExame_ID(ID);
+		render(exame);
+	}
+	
+	public static void buscarUltimosExames() {
+		List<Exame> listaExames = new ArrayList<Exame>();
+		listaExames = daoExame.buscarUltimosExames();
+		render(listaExames);
+	}
+	
+	public static void showExame() {
+		render();
+	}
+	
+	public static void Erro() {
+		render();
 	}
 	
 }
