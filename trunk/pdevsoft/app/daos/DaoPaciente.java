@@ -18,7 +18,7 @@ public class DaoPaciente {
 	private static Connection con;
 	private static Statement comando;
 
-	private static void conectar() {
+	public static void conectar() {
 
 		try {
 			con = MySQLDAOFactory.conexao("jdbc:mysql://localhost/eplay",

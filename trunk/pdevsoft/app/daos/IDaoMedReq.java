@@ -5,24 +5,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.*;
+
 public interface IDaoMedReq {
 
-	private static void conectar();
+	public void conectar();
 
-	public static void showMedreq();
+	public void showMedreq();
 
-	public static void showMedreq_Exame(int ID);
+	public void showMedreq_Exame(int ID);
 
-	public static void showMedico_Paciente(int ID);
+	public void showMedico_Paciente(int ID);
 
-	public static void doCreateMedreq(MedicoReq medicoreq);
+	public void doCreateMedreq(MedicoReq medicoreq);
 
-	public static void createMedreq();
+	public void createMedreq();
 
-	public static void buscarMedPacienteID();
+	public void buscarMedPacienteID();
 
-	public static void buscarMedicoReqExameId();
+	public void buscarMedicoReqExameId();
 
-	public static void Erro();
+	public void Erro();
 
 }
