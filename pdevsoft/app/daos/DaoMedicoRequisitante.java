@@ -76,6 +76,7 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 	}
 	
 	public MedicoReq buscarMedicoReq(int CRMR) {
+		String buscar_medico = "";
 		return null;
 	}
 	

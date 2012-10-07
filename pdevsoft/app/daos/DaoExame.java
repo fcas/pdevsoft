@@ -127,16 +127,18 @@ public class DaoExame implements IDaoExame {
 
 	}
 
-	public Exame buscarExame_DataPrometida(String data) {
-		Exame le = new Exame();
+	public List<Exame> buscarExame_DataPrometida(String data) {
+		
+		List<Exame> list = new ArrayList<Exame>();
 		ResultSet result = null;
 
 		try {
 			conectar();
-			result = comando
-					.executeQuery("SELECT * FROM ExameLaudo WHERE dataentrega = "
+			result = comando.executeQuery("SELECT * FROM examelaudo WHERE dataentrega = "
 							+ data);
-			if (result != null) {
+		
+			while (result.next()) {
+				Exame le = new Exame();
 				le.setID(result.getInt("ID"));
 				le.setID_material(result.getInt("ID_material"));
 				le.setSituacao(result.getString("situacao"));
@@ -149,27 +151,28 @@ public class DaoExame implements IDaoExame {
 				le.setAnalise_macro(result.getString("analise_macro"));
 				le.setAnalise_micro(result.getString("analise_micro"));
 				le.setObservacoes(result.getString("observacoes"));
-			} else {
-				return null;
+				System.out.println("ID DE UM DOS ITENS DA LISTA: " + le.getID());
+				list.add(le);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return le;
+		
+		return list;
 	}
 	
-	public Exame buscarExame_Situacao(String situacao) {
+	public List<Exame> buscarExame_Situacao(String situacao) {
+		
 		ResultSet result = null;
-		Exame le = new Exame();
+		List<Exame> list = new ArrayList<Exame>();
 		
 		try {
 			conectar();
 			result = comando
 					.executeQuery("SELECT * FROM ExameLaudo WHERE situacao = "
 							+ situacao);
-			if (result != null) {
+			while (result.next()) {
+				Exame le = new Exame();
 				le.setID(result.getInt("ID"));
 				le.setID_material(result.getInt("ID_material"));
 				le.setSituacao(result.getString("situacao"));
@@ -182,15 +185,14 @@ public class DaoExame implements IDaoExame {
 				le.setAnalise_macro(result.getString("analise_macro"));
 				le.setAnalise_micro(result.getString("analise_micro"));
 				le.setObservacoes(result.getString("observacoes"));
-			} else {
-				return null;
+				list.add(le);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return le;
+		return list;
 	}
 	
 	public Exame buscarExame_ID(int ID) {
@@ -225,7 +227,6 @@ public class DaoExame implements IDaoExame {
 		}
 
 		return le;
-
 	}
 	
 	public List<Exame> buscarUltimosExames () {
