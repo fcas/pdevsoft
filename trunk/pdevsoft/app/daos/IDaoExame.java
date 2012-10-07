@@ -8,8 +8,8 @@ public interface IDaoExame {
 	public void apagarExame(Exame exame);
 	public void editarExame(Exame exame);
 	public Exame buscarExame_ID(int ID);
-	public Exame buscarExame_DataPrometida(String dataEntrega);
-	public Exame buscarExame_Situacao (String Situacao);
+	public List<Exame> buscarExame_DataPrometida(String data);
+	public List<Exame> buscarExame_Situacao (String Situacao);
 	public List<Exame> buscarUltimosExames();
 	public List<Exame> listarExames();
 //	public List<Exame> buscarExamesEntregues();
