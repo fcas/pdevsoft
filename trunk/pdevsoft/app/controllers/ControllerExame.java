@@ -80,15 +80,15 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void buscarExame_DataPrometida(String data) {
-		Exame exame = new Exame();
-		exame = daoExame.buscarExame_DataPrometida(data);
-		render(exame);
+		List<Exame> list_exame = new ArrayList<Exame>();
+		list_exame = daoExame.buscarExame_DataPrometida(data);
+		render(list_exame);
 	}
 	
 	public static void buscarExame_Situacao(String situacao) {
-		Exame exame = new Exame();
-		exame = daoExame.buscarExame_Situacao(situacao);
-		render(exame);
+		List<Exame> list_exame = new ArrayList<Exame>();
+		list_exame = daoExame.buscarExame_Situacao(situacao);
+		render(list_exame);
 	}
 	
 	public static void buscarExame_ID(int ID) {
