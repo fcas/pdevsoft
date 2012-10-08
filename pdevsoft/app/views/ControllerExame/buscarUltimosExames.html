@@ -1,6 +1,7 @@
-<!--#{extends 'main.html' /}
-#{set title:'Remover Paciente' /}
--->
+#{extends 'main.html' /}
+
+<html>
+
 <head>
 <link rel="stylesheet"media="screen" href="style.css">
 <script type="text/javascript" src="jquery.js"></script> 
@@ -10,7 +11,9 @@
 CONTENT="text/html; charset=UTF-8">
 </head>
 
-<div id="header">
+<body>
+	
+	<div id="header">
 <h1 id="m1">MedLab</h1>
 </div>
 
@@ -24,32 +27,60 @@ CONTENT="text/html; charset=UTF-8">
 			<li id="contato">Ajuda</li>
 		</ul>
 </div>
-
-
 <div id="content">
 	<div id="principal">
-</br> </br> 
-		<h1>Buscar exame pela situação</h1>
-	<form action="@{ControllerExame.buscarExame_Situacao()}" method="POST">
+		<h1>Exames</h1>
+	#{list items: list_exame, as : 'p'}
 		<table>
 		<tr>
-			<td><label>Digite a situação: </label></td>
-			<td><p class="field">
-				<input type="text" name="situacao"/>
-				</p></td>
+			<td><label>ID: </label></td>
+			<td>${p.ID}</td>
 		</tr>
+		<tr>
+			<td><label>Situacao: </label></td>
+			<td>${p.situacao}</td>
+		</tr>
+		<tr>
+			<td><label>Data da requisição: </label></td>
+			<td>${p.datarec}</td>
+		</tr><tr>
+			<td><label>Data da entrega: </label></td>
+			<td>${p.dataentrega}</td>
+		</tr><tr>
+			<td><label>ID Paciente: </label></td>
+			<td>${p.ID_paciente}</td>
+		</tr><tr>
+			<td><label>CRM do Médico Requisitante: </label></td>
+			<td>${p.CRMR}</td>
+		</tr><tr>
+			<td><label>CRM do Médico do laboratório: </label></td>
+			<td>${p.CRML}</td>
+		</tr><tr>
+			<td><label>Resultado: </label></td>
+			<td> ${p.resultado}</td>
+		</tr><tr>
+			<td><label>Análise macroscópica: </label></td>
+			<td>${p.analise_macro}</td>
+		</tr><tr>
+			<td><label>Análise microscópica: </label></td>
+			<td>${p.analise_micro}</td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td>${p.observacoes}</td>
+		</tr>
+		#{/list}
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar"/>
+			<td></td><td>
 			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>
  <p>
-
+	 
+</form>
 </div>
-
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -83,10 +114,7 @@ CONTENT="text/html; charset=UTF-8">
 			<li><a href="#">Localização</a></li>
 			</ul>
 </div>
-
-
 </div>
 
-<div id="footer">
- © Copyright AndFeLa 2012
-</div>
+</body>
+</html>
