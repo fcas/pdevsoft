@@ -38,7 +38,7 @@ public class ControllerMedico extends Controller {
 		
 			if (daoMedLab.buscarMedicoLab(medLab.CRML) == null) {
 				daoMedLab.criarMedLab(medLab);
-				showMedLab();
+				showMedico();
 			} else {
 				Erro();
 			}	
@@ -52,7 +52,7 @@ public class ControllerMedico extends Controller {
 			
 			if (daoMedLab.buscarMedicoLab(medLab.CRML) != null) {
 				daoMedLab.apagarMedLab(medLab);
-				showMedLab();
+				showMedico();
 			} else {
 				Erro();
 			}	
@@ -66,7 +66,7 @@ public class ControllerMedico extends Controller {
 			
 			if (daoMedLab.buscarMedicoLab(medLab.CRML) != null) {
 				daoMedLab.editarMedLab(medLab);
-				showMedLab();
+				showMedico();
 			} else {
 				Erro();
 			}	
@@ -81,9 +81,9 @@ public class ControllerMedico extends Controller {
 		render(listaMedLab);
 	}
 	
-	public static void buscarMedicoLab(int CRML) {
+	public static void buscarMedicoLab(String CRML) {
 		MedicoLab medLab = new MedicoLab();
-		medLab = daoMedLab.buscarMedicoLab(CRML);
+		medLab = daoMedLab.buscarMedicoLab(Integer.parseInt(CRML));
 		render(medLab);
 	}
 	
@@ -93,7 +93,7 @@ public class ControllerMedico extends Controller {
 		
 			if (daoMedReq.buscarMedicoReq(medReq.CRMR) == null) {
 				daoMedReq.criarMedReq(medReq);
-				showMedReq();
+				showMedico();
 			} else {
 				Erro();
 			}	
@@ -107,7 +107,7 @@ public class ControllerMedico extends Controller {
 			
 			if (daoMedReq.buscarMedicoReq(medReq.CRMR) != null) {
 				daoMedReq.apagarMedReq(medReq);
-				showMedReq();
+				showMedico();
 			} else {
 				Erro();
 			}	
@@ -121,7 +121,7 @@ public class ControllerMedico extends Controller {
 			
 			if (daoMedReq.buscarMedicoReq(medReq.CRMR) != null) {
 				daoMedReq.editarMedReq(medReq);
-				showMedReq();
+				showMedico();
 			} else {
 				Erro();
 			}	
@@ -136,17 +136,45 @@ public class ControllerMedico extends Controller {
 		render(listaMedReq);
 	}
 	
-	public static void buscarMedicoReq(int CRMR) {
+	public static void buscarMedicoReq(String CRMR) {
 		MedicoReq medReq = new MedicoReq();
-		medReq = daoMedReq.buscarMedicoReq(CRMR);
+		medReq = daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR));
 		render(medReq);
 	}
 	
-	public static void showMedLab() {
+	public static void showMedico() {
 		render();
 	}
 	
-	public static void showMedReq() {
+	public static void showCriarMedicoLab() {
+		render();
+	}
+	
+	public static void showCriarMedicoReq() {
+		render();
+	}
+	
+	public static void showApagarMedicoLab() {
+		render();
+	}
+	
+	public static void showApagarMedicoReq() {
+		render();
+	}
+	
+	public static void showEditarMedicoLab() {
+		render();
+	}
+	
+	public static void showEditarMedicoReq() {
+		render();
+	}
+	
+	public static void showBuscarMedicoLab() {
+		render();
+	}
+	
+	public static void showBuscarMedicoReq() {
 		render();
 	}
 	
