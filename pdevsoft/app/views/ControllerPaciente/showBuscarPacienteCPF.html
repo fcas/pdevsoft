@@ -1,13 +1,20 @@
 <!--#{extends 'main.html' /}
-#{set title:'Cadastro de Pacientes' /}
+#{set title:'Remover Paciente' /}
 -->
+<html>
+
 <head>
+<link rel="stylesheet"media="screen" href="style.css">
+<script type="text/javascript" src="jquery.js"></script> 
+
+<script type="text/javascript" src="style.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
 
 <div id="header">
 <h1 id="m1">MedLab</h1>
+<form action="@{ControllerPaciente.buscarPacienteCPF()}" method="POST">
 </div>
 
 <div id="menu">
@@ -22,11 +29,59 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
+<body>
 <div id="content">
+	
 	<div id="principal">
-		<p>Até a próxima</p>
-		
-</div>
+	<h1>Paciente</h1>
+	#{list items: list_paciente, as : 'p'}
+		<table>
+		<tr>
+			<td><label>ID: </label></td>
+			<td>${p.ID}</td>
+		</tr>
+		<tr>
+			<td><label>Nome: </label></td>
+			<td>${p.nome}</td>
+		</tr>
+		<tr>
+			<td><label>Endereço: </label></td>
+			<td>${p.endereco}</td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td>${p.email}</td>
+		</tr><tr>
+			<td><label>Telefone: </label></td>
+			<td>${p.telefone}</td>
+		</tr><tr>
+			<td><label>Data de nascimento: </label></td>
+			<td>${p.datanasc}</td>
+		</tr><tr>
+			<td><label>Estado civil: </label></td>
+			<td>${p.estadocivil}</td>
+		</tr><tr>
+			<td><label>Sexo: </label></td>
+			<td> ${p.sexo}</td>
+		</tr><tr>
+			<td><label>CPF: </label></td>
+			<td>${p.cpf}</td>
+		</tr><tr>
+			<td><label>RG: </label></td>
+			<td>${p.rg}</td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td>${p.observacoes}</td>
+		</tr>
+		#{/list}
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+</form>
 </div>
 
 <div id="menu2">
@@ -63,8 +118,5 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
-</div>
-
-<div id="footer">
- © Copyright AndFeLa 2012
-</div>
+</body>
+</html>
