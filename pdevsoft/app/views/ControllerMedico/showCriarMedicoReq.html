@@ -2,6 +2,10 @@
 #{set title:'Cadastro de Pacientes' /}
 -->
 <head>
+<link rel="stylesheet" type="text/css" href="cadastrop.css">
+<script type="text/javascript" src="jquery.js"></script> 
+<script type="text/javascript" src="slider.js"></script> 
+<script type="text/javascript" src="cadastro.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
@@ -24,9 +28,42 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="content">
 	<div id="principal">
-		</br></br></br>
-		<h1>Verifique os campos ID ou CRM</h1>
-		<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'">
+		<h1>Cadastrar Médico Requisitante</h1>
+	<form action="@{ControllerMedico.criarMedicoReq()}" method="POST">
+		<table>
+		<tr>
+			<td><label>CRM: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.CRMR"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Nome: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.nome"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Telefone: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.telefone"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td><p class="field">
+				<input type="text" name="medicoreq.email"/>
+				</p></td>
+		</tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="submit" name="create" value="Salvar dados"/>
+			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+</form>
 </div>
 
 
@@ -64,8 +101,10 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
+
 </div>
 
 <div id="footer">
  © Copyright AndFeLa 2012
 </div>
+

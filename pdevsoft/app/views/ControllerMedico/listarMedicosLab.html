@@ -1,7 +1,13 @@
 <!--#{extends 'main.html' /}
-#{set title:'Cadastro de Pacientes' /}
+#{set title:'Remover Paciente' /}
 -->
+<html>
+
 <head>
+<link rel="stylesheet"media="screen" href="style.css">
+<script type="text/javascript" src="jquery.js"></script> 
+
+<script type="text/javascript" src="style.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
@@ -22,14 +28,41 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
+
+<body>
 <div id="content">
+	
 	<div id="principal">
-		</br></br></br>
-		<h1>Verifique os campos ID ou CRM</h1>
-		<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'">
+	<h1>Médicos do Laboratório</h1>
+	#{list items: list_medico, as : 'p'}
+		<table>
+		<tr>
+			<td><label>CRM: </label></td>
+			<td>${p.CRMR}</td>
+		</tr><tr>
+			<td><label>Nome: </label></td>
+			<td>${p.nome}</td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td>${p.email}</td>
+		</tr><tr>
+			<td><label>Telefone: </label></td>
+			<td>${p.telefone}</td>
+		</tr>
+		#{/list}
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+			
+		</tr>
+		
+		</table>
+ <p>
+</form>
 </div>
-
-
+</div>
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
 <li><a like href="http://localhost:9000/ControllerMedico/showCriarMedicoReq"> Cadastrar Médico Requisitante </a></li></br>
@@ -63,9 +96,8 @@ CONTENT="text/html; charset=UTF-8">
 			</ul>
 </div>
 
-
-</div>
-
+</body>
 <div id="footer">
  © Copyright AndFeLa 2012
 </div>
+</html>

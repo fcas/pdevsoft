@@ -1,10 +1,6 @@
-<!--#{extends 'main.html' /}
-#{set title:'Cadastro de Pacientes' /}
--->
-<head>
-<meta HTTP-EQUIV="Content-Type"
-CONTENT="text/html; charset=UTF-8">
-</head>
+#{extends 'main.html' /}
+<link rel="stylesheet" href="@{'/public/stylesheets/style.css'}">
+#{/set}
 
 <div id="header">
 <h1 id="m1">MedLab</h1>
@@ -21,14 +17,13 @@ CONTENT="text/html; charset=UTF-8">
 		</ul>
 </div>
 
-
 <div id="content">
-	<div id="principal">
-		</br></br></br>
-		<h1>Verifique os campos ID ou CRM</h1>
-		<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'">
-</div>
 
+<h1>Médico cadastrado com sucesso!</h1>
+
+
+<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
+</p>
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -63,9 +58,4 @@ CONTENT="text/html; charset=UTF-8">
 			</ul>
 </div>
 
-
-</div>
-
-<div id="footer">
- © Copyright AndFeLa 2012
 </div>
