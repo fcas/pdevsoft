@@ -2,6 +2,10 @@
 #{set title:'Cadastro de Pacientes' /}
 -->
 <head>
+<link rel="stylesheet"media="screen" href="style.css">
+<script type="text/javascript" src="jquery.js"></script> 
+
+<script type="text/javascript" src="style.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
@@ -24,9 +28,78 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="content">
 	<div id="principal">
-		<p>Até a próxima</p>
-		
-</div>
+</br> </br> 
+		<h1>Editar paciente</h1>
+	<form action="@{ControllerPaciente.editarPaciente()}" method="POST">
+		<table>
+		<tr>
+			<td><label>Informe o ID do paciente a ser modificado:</label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.ID"/>
+				</p><br><br></td>
+		</tr>
+		<tr>
+			<td><label>Nome: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.nome"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Endereço: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.endereco"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.email"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Telefone: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.telefone"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Data de nascimento: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.datanasc"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Estado civil: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.estadocivil"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Sexo: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.sexo"/>
+				</p></td>
+		</tr><tr>
+			<td><label>CPF: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.cpf"/>
+				</p></td>
+		</tr><tr>
+			<td><label>RG: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.rg"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td><p class="field">
+				<input type="text" name="paciente.observacoes"/>
+				</p></td>
+		</tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="submit" name="create" value="Editar paciente"/>
+			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+</form>
 </div>
 
 <div id="menu2">
