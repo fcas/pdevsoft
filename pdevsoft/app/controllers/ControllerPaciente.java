@@ -85,15 +85,19 @@ public class ControllerPaciente extends Controller {
 		render();
 	}
 	
-	public static void showPaciente_CPF() {
+	public static void showBuscarPacienteCPF() {
 		render();
 	}
 	
-	public static void showPaciente_RG() {
+	public static void showBuscarPacienteRG() {
 		render();
 	}
 	
 	public static void showCriarPaciente() {
+		render();
+	}
+	
+	public static void showEditarPaciente() {
 		render();
 	}
 	
