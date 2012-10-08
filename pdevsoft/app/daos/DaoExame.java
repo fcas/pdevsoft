@@ -134,11 +134,13 @@ public class DaoExame implements IDaoExame {
 
 		try {
 			conectar();
-			result = comando.executeQuery("SELECT * FROM examelaudo WHERE dataentrega = "
+			result = comando.executeQuery("SELECT * FROM ExameLaudo WHERE dataentrega = "
 							+ data);
+
 		
 			while (result.next()) {
 				Exame le = new Exame();
+
 				le.setID(result.getInt("ID"));
 				le.setID_material(result.getInt("ID_material"));
 				le.setSituacao(result.getString("situacao"));
@@ -170,7 +172,8 @@ public class DaoExame implements IDaoExame {
 			conectar();
 			result = comando
 					.executeQuery("SELECT * FROM ExameLaudo WHERE situacao = "
-							+ situacao);
+							+ "'"+situacao+"'"+";");
+
 			while (result.next()) {
 				Exame le = new Exame();
 				le.setID(result.getInt("ID"));
@@ -196,7 +199,7 @@ public class DaoExame implements IDaoExame {
 	}
 	
 	public Exame buscarExame_ID(int ID) {
-
+		System.out.println("ENTREI NA BUSCA!!!!!! ID = " + ID);
 		ResultSet result = null;
 		Exame le = new Exame();
 		
@@ -204,8 +207,9 @@ public class DaoExame implements IDaoExame {
 			conectar();
 			result = comando
 					.executeQuery("SELECT * FROM ExameLaudo WHERE ID = "
-							+ ID);
-			if (result != null) {
+							+ ID+ ";");
+			if (result.next()) {
+				System.out.println("SETANDO EXAME NA BUSCA");
 				le.setID(result.getInt("ID"));
 				le.setID_material(result.getInt("ID_material"));
 				le.setSituacao(result.getString("situacao"));
