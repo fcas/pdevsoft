@@ -1,11 +1,11 @@
 <!--#{extends 'main.html' /}
-#{set title:'Remover Paciente' /}
+#{set title:'Cadastro de Pacientes' /}
 -->
 <head>
-<link rel="stylesheet"media="screen" href="style.css">
+<link rel="stylesheet" type="text/css" href="cadastrop.css">
 <script type="text/javascript" src="jquery.js"></script> 
-
-<script type="text/javascript" src="style.js"></script>
+<script type="text/javascript" src="slider.js"></script> 
+<script type="text/javascript" src="cadastro.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
@@ -28,26 +28,85 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="content">
 	<div id="principal">
-</br> </br> 
-		<h1>Buscar exame pela situação</h1>
-	<form action="@{ControllerExame.buscarExame_Situacao()}" method="POST">
+		<h1>Cadastrar exame</h1>
+	<form action="@{ControllerExame.criarExame()}" method="POST">
 		<table>
 		<tr>
-			<td><label>Digite a situação: </label></td>
+			<td><label>ID: </label></td>
 			<td><p class="field">
-				<input type="text" name="situacao"/>
+				<input type="text" name="exame.ID"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>ID Material: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID_material"/>
+				</p></td>
+		</tr>
+			<tr>
+			<td><label>Situação: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.situacao"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Data da requisição: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.datarec"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Data da entrega: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.dataentrega"/>
+				</p></td>
+		</tr><tr>
+			<td><label>ID Paciente: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.ID_paciente"/>
+				</p></td>
+		</tr><tr>
+			<td><label>CRM Requisitante: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.CRMR"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>CRM Médico do Laboratório: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.CRML"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Resultado: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.resultado"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Analise Macro: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.Analise_macro"/>
+				</p></td>
+		</tr>
+		<tr>
+			<td><label>Análise Micro: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.Analise_micro"/>
+				</p></td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td><p class="field">
+				<input type="text" name="exame.observacoes"/>
 				</p></td>
 		</tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar"/>
+			<td></td><td><input type="submit" name="create" value="Salvar dados"/>
 			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>
  <p>
-
+</form>
 </div>
 
 
@@ -85,8 +144,10 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
+
 </div>
 
 <div id="footer">
  © Copyright AndFeLa 2012
 </div>
+
