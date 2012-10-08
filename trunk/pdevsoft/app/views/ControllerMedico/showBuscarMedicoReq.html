@@ -1,7 +1,11 @@
 <!--#{extends 'main.html' /}
-#{set title:'Cadastro de Pacientes' /}
+#{set title:'Remover Paciente' /}
 -->
 <head>
+<link rel="stylesheet"media="screen" href="style.css">
+<script type="text/javascript" src="jquery.js"></script> 
+
+<script type="text/javascript" src="style.js"></script>
 <meta HTTP-EQUIV="Content-Type"
 CONTENT="text/html; charset=UTF-8">
 </head>
@@ -24,9 +28,26 @@ CONTENT="text/html; charset=UTF-8">
 
 <div id="content">
 	<div id="principal">
-		</br></br></br>
-		<h1>Verifique os campos ID ou CRM</h1>
-		<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'">
+</br> </br> 
+		<h1>Buscar informações sobre Médico Requisitante</h1>
+	<form action="@{ControllerMedico.buscarMedicoReq()}" method="POST">
+		<table>
+		<tr>
+			<td><label>Digite o CRM do médico requisitante: </label></td>
+			<td><p class="field">
+				<input type="text" name="CRMR"/>
+				</p></td>
+		</tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr><td></td><td></td></td></tr>
+		<tr>
+			<td></td><td><input type="submit" name="create" value="Buscar"/>
+			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+		</tr>
+		</table>
+ <p>
+
 </div>
 
 
