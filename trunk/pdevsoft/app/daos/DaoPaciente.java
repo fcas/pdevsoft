@@ -88,9 +88,9 @@ public class DaoPaciente implements IDaoPaciente {
 		
 		try {
 			conectar();
-			result = comando.executeQuery("SELECT FROM Paciente WHERE ID = "
+			result = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
 					+ ID + ";");
-			if (result != null) { 
+			if (result.next()) { 
 			/*antes era result.next() e tinha uma lista de pacientes, 
 			 * só que como agora retorna só um
 			 * paciente, a necessidade é apenas verificar se retornou
@@ -98,6 +98,8 @@ public class DaoPaciente implements IDaoPaciente {
 			 * 	então testem isso por favor. Se não funcionar,
 			 * volta pro que tava antes! OS OUTROS DAOS TÃO DA MESMA FORMA!!!
 			 */
+
+				System.out.println("ENTREI NO RESULT.NEXT");
 				le.setID(result.getInt("ID"));
 				le.setNome(result.getString("nome"));
 				le.setEndereco(result.getString("endereco"));
@@ -129,7 +131,7 @@ public class DaoPaciente implements IDaoPaciente {
 			result = comando.executeQuery("SELECT * FROM Paciente WHERE RG = '"
 					+ RG + "'");
 		
-			if (result != null) {
+			if (result.next()) {
 				le.setID(result.getInt("ID"));
 				le.setNome(result.getString("nome"));
 				le.setEndereco(result.getString("endereco"));
@@ -161,7 +163,7 @@ public class DaoPaciente implements IDaoPaciente {
 			result = comando.executeQuery("SELECT * FROM Paciente WHERE CPF = '" + CPF
 							+ "'");
 		
-			if (result != null) {
+			if (result.next()) {
 				le.setID(result.getInt("ID"));
 				le.setNome(result.getString("nome"));
 				le.setEndereco(result.getString("endereco"));
