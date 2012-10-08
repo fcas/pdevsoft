@@ -19,7 +19,7 @@ public class ControllerExame extends Controller {
 	 * o mesmo modelo. Nessas classes de controller, um probleminha que tá.
 	 * 
 	 * 
-	 * 
+	 * FALTA OS HTML DE EDITAR E APAGAR
 	 * 
 	 */
 	public static IDaoExame daoExame;//o controller só fala com a interface, por isso que tá declarado aqui
@@ -86,14 +86,16 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void buscarExame_Situacao(String situacao) {
+		//System.out.println("SITUACAO = " + situacao);
 		List<Exame> list_exame = new ArrayList<Exame>();
 		list_exame = daoExame.buscarExame_Situacao(situacao);
 		render(list_exame);
 	}
 	
-	public static void buscarExame_ID(int ID) {
+	public static void buscarExame_ID(String ID) {
 		Exame exame = new Exame();
-		exame = daoExame.buscarExame_ID(ID);
+		exame = daoExame.buscarExame_ID(Integer.parseInt(ID));
+		System.out.println(exame.);
 		render(exame);
 	}
 	
@@ -111,11 +113,15 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
-	public static void showExame_Entregues() {
-		render();
-	}
+//	public static void showExame_Entregues() {
+//		render();
+//	}
+//	
+//	public static void showExame_NaoEntregues() {
+//		render();
+//	}
 	
-	public static void showExame_NaoEntregues() {
+	public static void showExame_Situacao() {
 		render();
 	}
 	
@@ -123,11 +129,9 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
-	public static void showUltimosExames() {
+	public static void showCriarExame() {
 		render();
 	}
-	
-	
 	
 	public static void Erro() {
 		render();

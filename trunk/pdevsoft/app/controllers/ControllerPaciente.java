@@ -15,7 +15,6 @@ import models.*;
 import daos.*;
 
 
-/*Falta o html para criar paciente*/
 public class ControllerPaciente extends Controller {
 	public static IDaoPaciente daoPaciente;
 	

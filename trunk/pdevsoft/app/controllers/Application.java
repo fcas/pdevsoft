@@ -90,6 +90,9 @@ public class Application extends Controller {
 		
 		ControllerPaciente cpaciente = new ControllerPaciente(daoPaciente);
 		System.out.println("CRIOU FACTORY E CONTROLLER");
+		if (daoPaciente == null) {
+			System.out.println("DAO PACIENTE NULOOOOOOOO");
+		}
 		ControllerExame cexame = new ControllerExame(daoExame, daoPaciente, daoMedLab, daoMedReq);
 		ControllerMedico cmedico = new ControllerMedico (daoMedLab, daoMedReq);
 		//ControllerUsuario cusuario = new ControllerUsuario(factory.createDaoUsuario());
