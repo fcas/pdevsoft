@@ -113,6 +113,10 @@ public class ControllerPaciente extends Controller {
     public static void showEditarPaciente() { 
         render(); 
     } 
+    
+    public static void showApagarPaciente() { 
+        render(); 
+    } 
      
     public static void Erro() { 
         render();
