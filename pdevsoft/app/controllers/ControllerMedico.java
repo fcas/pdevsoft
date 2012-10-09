@@ -17,12 +17,6 @@ import daos.*;
 public class ControllerMedico extends Controller {
 	public static IDaoMedLab daoMedLab;
 	public static IDaoMedReq daoMedReq;
-	/*Em EDITAR a gente teria que fazer uma coisa verificando
-	 * as mesmas coisas que se verifica em CRIAR, só que nesse caso
-	 * verificar que o ID/CRM não foi alterado. As outras coisas podem ser alteradas
-	 desde que mantenha a consistencia de chave estrangeira (no caso de Exame).
-	 em APAGAR a mesma coisa. não pode apagar o que seja chave estrangeira de outra.
-	 */
 	
 	public ControllerMedico(IDaoMedLab daoMedLab, IDaoMedReq daoMedReq) {
 		this.daoMedLab = daoMedLab;
@@ -32,7 +26,6 @@ public class ControllerMedico extends Controller {
 	public static void criarMedicoLab (MedicoLab medLab) {
 		
 		if (medLab.CRML != 0) {
-			System.out.println("CRML === " + medLab.CRML);
 			if (daoMedLab.buscarMedicoLab(medLab.CRML) == null) {
 				daoMedLab.criarMedicoLab(medLab);
 				showMedico();
@@ -47,9 +40,10 @@ public class ControllerMedico extends Controller {
 	public static void apagarMedicoLab (String CRML) {
 		if (Integer.parseInt(CRML) != 0) {
 			
-			if (daoMedLab.buscarMedicoLab(Integer.parseInt(CRML)) != null) {
-				daoMedLab.apagarMedicoLab(Integer.parseInt(CRML));
-				render();
+			if ((daoMedLab.buscarMedicoLab(Integer.parseInt(CRML)) != null) && 
+					(!daoMedLab.verificarCRM(Integer.parseInt(CRML)))) {
+					daoMedLab.apagarMedicoLab(Integer.parseInt(CRML));
+					render();	
 			} else {
 				Erro();
 			}	
@@ -93,7 +87,6 @@ public class ControllerMedico extends Controller {
 	public static void criarMedicoReq (MedicoReq medReq) {
 
 		if (medReq.CRMR != 0) {
-			System.out.println("CRMR === " + medReq.CRMR);
 			if (daoMedReq.buscarMedicoReq(medReq.CRMR) == null) {
 				daoMedReq.criarMedicoReq(medReq);
 				showMedico();
@@ -106,9 +99,10 @@ public class ControllerMedico extends Controller {
 	}
 
 	public static void apagarMedicoReq (String CRMR) {
-		if (Integer.parseInt(CRMR) != 0) {//VERIFICAR ISSO
+		if (Integer.parseInt(CRMR) != 0) {
 			
-			if (daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR)) != null) {
+			if ((daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR)) != null) && 
+					(!daoMedReq.verificarCRM(Integer.parseInt(CRMR)))) {
 				daoMedReq.apagarMedicoReq(Integer.parseInt(CRMR));
 				showMedico();
 			} else {
@@ -143,7 +137,6 @@ public class ControllerMedico extends Controller {
 	}
 	
 	public static void buscarMedicoReq(String CRMR) {
-		//System.out.println("CRMR A SER BUSCADO = " + CRMR);
 		MedicoReq medReq = daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR));
 		if (medReq != null) {
 			render(medReq);

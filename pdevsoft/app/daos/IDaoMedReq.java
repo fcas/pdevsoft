@@ -8,6 +8,7 @@ public interface IDaoMedReq {
 	public void criarMedicoReq(MedicoReq medReq);
 	public void apagarMedicoReq(int CRMR);
 	public void editarMedicoReq(MedicoReq medReq);
+	public boolean verificarCRM(int CRMR);
 	public List<MedicoReq> listarMedicosReq();
 	public MedicoReq buscarMedicoReq(int CRMR);
 }

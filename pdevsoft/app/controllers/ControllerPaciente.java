@@ -39,7 +39,8 @@ public class ControllerPaciente extends Controller {
     public static void apagarPaciente(String ID) { 
          
         if (Integer.parseInt(ID) != 0) { 
-            if (daoPaciente.buscarPaciente(Integer.parseInt(ID)) != null) { 
+            if ((daoPaciente.buscarPaciente(Integer.parseInt(ID)) != null) && 
+            		(!daoPaciente.verificarID(Integer.parseInt(ID)))) { 
                 daoPaciente.apagarPaciente(Integer.parseInt(ID)); 
                 render(); 
             } else { 

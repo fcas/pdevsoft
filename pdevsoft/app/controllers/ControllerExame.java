@@ -30,7 +30,6 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void criarExame (Exame exame) {
-		//System.out.println("EXAME.ID = " + exame.ID + " PACIENTE ID = " + exame.ID_paciente + " CRMR = " + exame.CRMR + " CRML = " + exame.CRML);
 		if (exame.ID != 0) { //testa se o ID é vazio
 			//verificacao se o ID do exame não existe e os demais campos relacionados a outras entidades existem
 			if ((daoExame.buscarExame_ID(exame.ID) == null) && (daoPaciente.buscarPaciente(exame.ID_paciente) != null) 
