@@ -53,7 +53,7 @@ public class DaoPaciente implements IDaoPaciente {
 	public void apagarPaciente(Paciente paciente) {
 		
 		String remove_paciente = "DELETE FROM Paciente WHERE ID = "
-				+ paciente.ID + ";";
+				+ paciente.ID;
 		try {
 			conectar();
 			comando.executeUpdate(remove_paciente);
@@ -90,15 +90,8 @@ public class DaoPaciente implements IDaoPaciente {
 			conectar();
 			result = comando.executeQuery("SELECT * FROM Paciente WHERE ID = "
 					+ ID + ";");
+			
 			if (result.next()) { 
-			/*antes era result.next() e tinha uma lista de pacientes, 
-			 * só que como agora retorna só um
-			 * paciente, a necessidade é apenas verificar se retornou
-			 * ou não. mas ainda não testei se assim funciona mesmo,
-			 * 	então testem isso por favor. Se não funcionar,
-			 * volta pro que tava antes! OS OUTROS DAOS TÃO DA MESMA FORMA!!!
-			 */
-
 				System.out.println("ENTREI NO RESULT.NEXT");
 				le.setID(result.getInt("ID"));
 				le.setNome(result.getString("nome"));
@@ -129,7 +122,7 @@ public class DaoPaciente implements IDaoPaciente {
 		try {
 			conectar();
 			result = comando.executeQuery("SELECT * FROM Paciente WHERE RG = '"
-					+ RG + "'");
+					+ RG + "';");
 		
 			if (result.next()) {
 				le.setID(result.getInt("ID"));
@@ -161,7 +154,7 @@ public class DaoPaciente implements IDaoPaciente {
 		try {
 			conectar();
 			result = comando.executeQuery("SELECT * FROM Paciente WHERE CPF = '" + CPF
-							+ "'");
+							+ "';");
 		
 			if (result.next()) {
 				le.setID(result.getInt("ID"));

@@ -1,14 +1,4 @@
-<!--#{extends 'main.html' /}
-#{set title:'Remover Paciente' /}
--->
-<head>
-<link rel="stylesheet"media="screen" href="style.css">
-<script type="text/javascript" src="jquery.js"></script> 
-
-<script type="text/javascript" src="style.js"></script>
-<meta HTTP-EQUIV="Content-Type"
-CONTENT="text/html; charset=UTF-8">
-</head>
+#{extends 'main.html' /}
 
 <div id="header">
 <h1 id="m1">MedLab</h1>
@@ -25,31 +15,58 @@ CONTENT="text/html; charset=UTF-8">
 		</ul>
 </div>
 
-
 <div id="content">
-	<div id="principal">
-</br> </br> 
-		<h1>Buscar paciente pelo RG</h1>
-	<form action="@{ControllerPaciente.buscarPacienteRG()}" method="POST">
+<div id="principal">
+<h1>Paciente</h1>
+	#{list items: paciente, as : 'p'}
 		<table>
 		<tr>
-			<td><label>Digite o RG do paciente </label></td>
-			<td><p class="field">
-				<input type="text" name="RG"/>
-				</p></td>
+			<td><label>ID: </label></td>
+			<td>${p.ID}</td>
 		</tr>
+		<tr>
+			<td><label>Nome: </label></td>
+			<td>${p.nome}</td>
+		</tr>
+		<tr>
+			<td><label>Endereço: </label></td>
+			<td>${p.endereco}</td>
+		</tr><tr>
+			<td><label>Email: </label></td>
+			<td>${p.email}</td>
+		</tr><tr>
+			<td><label>Telefone: </label></td>
+			<td>${p.telefone}</td>
+		</tr><tr>
+			<td><label>Data de nascimento: </label></td>
+			<td>${p.datanasc}</td>
+		</tr><tr>
+			<td><label>Estado civil: </label></td>
+			<td>${p.estadocivil}</td>
+		</tr><tr>
+			<td><label>Sexo: </label></td>
+			<td> ${p.sexo}</td>
+		</tr><tr>
+			<td><label>CPF: </label></td>
+			<td>${p.cpf}</td>
+		</tr><tr>
+			<td><label>RG: </label></td>
+			<td>${p.rg}</td>
+		</tr><tr>
+			<td><label>Observações: </label></td>
+			<td>${p.observacoes}</td>
+		</tr>
+		#{/list}
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="submit" name="create" value="Buscar paciente"/>
-			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
+			<td></td><td><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
 		</table>
  <p>
-
+</form>
 </div>
-
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -80,13 +97,7 @@ CONTENT="text/html; charset=UTF-8">
 <li><a like href="http://localhost:9000/ControllerExame/buscarUltimosExames"> Visualizar os ultimos exames cadastrados </a></li></br>
 </ul>
 <ul id="interno5"><li><a href="#">Quem somos nós</a></li></br>
-<li><a href="#">Localização</a></li>
-</ul>
+			<li><a href="#">Localização</a></li>
+			</ul>
 </div>
-
-
-</div>
-
-<div id="footer">
- © Copyright AndFeLa 2012
 </div>

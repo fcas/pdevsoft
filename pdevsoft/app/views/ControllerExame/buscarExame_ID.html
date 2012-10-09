@@ -19,7 +19,7 @@
 <div id="principal">
 <h1>Exames</h1>
 	
-	#{list items: list_exame, as : 'p'}
+	#{list items: exame, as : 'p'}
 		<table>
 		<tr>
 			<td><label>ID: </label></td>
@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td><label>Data da requisição: </label></td>
-			<td>${p.datareq}</td>
+			<td>${p.datarec}</td>
 		</tr><tr>
 			<td><label>Data da entrega: </label></td>
 			<td>${p.dataentrega}</td>
