@@ -177,4 +177,22 @@ public class DaoPaciente implements IDaoPaciente {
 		
 		return le;
 	}
+	
+	public boolean verificarID (int ID) {
+		ResultSet result = null;
+		
+		try {
+			conectar();
+			result = comando.executeQuery("SELECT * FROM ExameLaudo WHERE ID_paciente = "
+					+ ID + ";");
+			
+			if (result.next()) 
+				return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }

@@ -122,4 +122,21 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 		return le;
 	}
 	
+	public boolean verificarCRM (int CRMR) {
+		ResultSet result = null;
+		
+		try {
+			conectar();
+			result = comando.executeQuery("SELECT * FROM ExameLaudo WHERE CRMR = "
+					+ CRMR + ";");
+			
+			if (result.next()) 
+				return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

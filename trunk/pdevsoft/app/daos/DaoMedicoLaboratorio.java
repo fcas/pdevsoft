@@ -128,4 +128,22 @@ public class DaoMedicoLaboratorio implements IDaoMedLab {
 		return le;
 	}
 	
+	public boolean verificarCRM (int CRML) {
+		ResultSet result = null;
+		
+		try {
+			conectar();
+			result = comando.executeQuery("SELECT * FROM ExameLaudo WHERE CRML = "
+					+ CRML + ";");
+			
+			if (result.next()) 
+				return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 }
