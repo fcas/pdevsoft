@@ -34,11 +34,11 @@ CONTENT="text/html; charset=UTF-8">
 	
 	<div id="principal">
 	<h1>Médico do Laboratório</h1>
-	#{list items: list_medico, as : 'p'}
+	#{list items: medLab, as : 'p'}
 		<table>
 		<tr>
 			<td><label>CRM: </label></td>
-			<td>${p.CRMR}</td>
+			<td>${p.CRML}</td>
 		</tr><tr>
 			<td><label>Nome: </label></td>
 			<td>${p.nome}</td>
@@ -62,7 +62,7 @@ CONTENT="text/html; charset=UTF-8">
  <p>
 </form>
 </div>
-</div>
+
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
 <li><a like href="http://localhost:9000/ControllerMedico/showCriarMedicoReq"> Cadastrar Médico Requisitante </a></li></br>

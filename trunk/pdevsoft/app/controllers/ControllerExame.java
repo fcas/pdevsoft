@@ -30,7 +30,7 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void criarExame (Exame exame) {
-	
+		//System.out.println("EXAME.ID = " + exame.ID + " PACIENTE ID = " + exame.ID_paciente + " CRMR = " + exame.CRMR + " CRML = " + exame.CRML);
 		if (exame.ID != 0) { //testa se o ID é vazio
 			//verificacao se o ID do exame não existe e os demais campos relacionados a outras entidades existem
 			if ((daoExame.buscarExame_ID(exame.ID) == null) && (daoPaciente.buscarPaciente(exame.ID_paciente) != null) 
@@ -59,11 +59,11 @@ public class ControllerExame extends Controller {
 		}
 	}
 	
-	public static void apagarExame (Exame exame) {
-		if (exame.ID != 0) {
-			if ((daoExame.buscarExame_ID(exame.ID) != null)) {	//o exame tem que existir para ser apagado
-				daoExame.apagarExame(exame);
-				showExame();
+	public static void apagarExame (String ID) {
+		if (Integer.parseInt(ID) != 0) {
+			if ((daoExame.buscarExame_ID(Integer.parseInt(ID)) != null)) {	//o exame tem que existir para ser apagado
+				daoExame.apagarExame(Integer.parseInt(ID));
+				render();
 			} else {
 				Erro();
 			}	
@@ -139,6 +139,11 @@ public class ControllerExame extends Controller {
 	public static void showEditarExame(){
 		render();
 	}
+	
+	public static void showApagarExame(){
+		render();
+	}
+	
 	
 	public static void Erro() {
 		render();

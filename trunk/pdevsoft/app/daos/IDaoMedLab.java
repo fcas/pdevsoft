@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface IDaoMedLab {
 	
-	public void criarMedLab(MedicoLab medLab);
-	public void apagarMedLab(MedicoLab medLab);
-	public void editarMedLab(MedicoLab medLab);
+	public void criarMedicoLab(MedicoLab medLab);
+	public void apagarMedicoLab(int CRML);
+	public void editarMedicoLab(MedicoLab medLab);
 	public List<MedicoLab> listarMedicosLab();
 	public MedicoLab buscarMedicoLab(int CRML);
 

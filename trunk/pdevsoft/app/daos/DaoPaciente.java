@@ -50,10 +50,10 @@ public class DaoPaciente implements IDaoPaciente {
 
 	}
 
-	public void apagarPaciente(Paciente paciente) {
+	public void apagarPaciente(int ID) {
 		
 		String remove_paciente = "DELETE FROM Paciente WHERE ID = "
-				+ paciente.ID;
+				+ ID + ";";
 		try {
 			conectar();
 			comando.executeUpdate(remove_paciente);

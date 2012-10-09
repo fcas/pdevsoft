@@ -1,8 +1,6 @@
 <!--#{extends 'main.html' /}
 #{set title:'Remover Paciente' /}
 -->
-<html>
-
 <head>
 <link rel="stylesheet"media="screen" href="style.css">
 <script type="text/javascript" src="jquery.js"></script> 
@@ -28,40 +26,30 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
-
-<body>
 <div id="content">
-	
 	<div id="principal">
-	<h1>Médico Requisitante</h1>
-	#{list items: medReq, as : 'p'}
+</br> </br> 
+		<h1>Apagar Médico pelo CRM </h1>
+	<form action="@{ControllerMedico.apagarMedicoLab()}" method="POST">
 		<table>
 		<tr>
-			<td><label>CRM: </label></td>
-			<td>${p.CRMR}</td>
-		</tr><tr>
-			<td><label>Nome: </label></td>
-			<td>${p.nome}</td>
-		</tr><tr>
-			<td><label>Email: </label></td>
-			<td>${p.email}</td>
-		</tr><tr>
-			<td><label>Telefone: </label></td>
-			<td>${p.telefone}</td>
+			<td><label>Digite o CRM do médico: </label></td>
+			<td><p class="field">
+				<input type="text" name="CRML"/>
+				</p></td>
 		</tr>
-		#{/list}
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr><td></td><td></td></td></tr>
 		<tr>
-			<td></td><td><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
-			
+			<td></td><td><input type="submit" name="create" value="Apagar"/>
+			<input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
 		</tr>
-		
 		</table>
  <p>
-</form>
+
 </div>
+
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -96,8 +84,9 @@ CONTENT="text/html; charset=UTF-8">
 			</ul>
 </div>
 
-</body>
+
+</div>
+
 <div id="footer">
  © Copyright AndFeLa 2012
 </div>
-</html>

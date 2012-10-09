@@ -37,7 +37,7 @@ public class DaoMedicoLaboratorio implements IDaoMedLab {
 		}
 	}
 
-	public void criarMedLab (MedicoLab medicolab) {
+	public void criarMedicoLab (MedicoLab medicolab) {
 
 		try {
 		
@@ -52,10 +52,10 @@ public class DaoMedicoLaboratorio implements IDaoMedLab {
 		}
 	}
 	
-	public void apagarMedLab (MedicoLab medicolab) {
+	public void apagarMedicoLab (int CRML) {
 
 		String apagar_medico = "DELETE FROM MedicoLab WHERE CRML = "
-				+ medicolab.CRML + ";";
+				+ CRML + ";";
 		try {
 			conectar();
 			comando.executeUpdate(apagar_medico);
@@ -64,7 +64,7 @@ public class DaoMedicoLaboratorio implements IDaoMedLab {
 		}
 	}
 	
-	public void editarMedLab (MedicoLab medicolab) {//AJEITAR O UPDATE AQUI E EM MEDICOREQ
+	public void editarMedicoLab (MedicoLab medicolab) {//AJEITAR O UPDATE AQUI E EM MEDICOREQ
 
 		String apagar_medico = "UPDATE FROM MedicoLab WHERE CRML = "
 				+ medicolab.CRML + ";";
@@ -87,8 +87,9 @@ public class DaoMedicoLaboratorio implements IDaoMedLab {
 					.executeQuery("SELECT * FROM MedicoLab;");
 			
 			while (result.next()) {
+				System.out.println("SETANDO OS MEDICOS LAB");
 				MedicoLab le = new MedicoLab();
-				le.setCRML(result.getInt("CRM"));
+				le.setCRML(result.getInt("CRML"));
 				le.setNome(result.getString("nome"));
 				le.setEmail(result.getString("email"));
 				le.setTelefone(result.getString("telefone"));

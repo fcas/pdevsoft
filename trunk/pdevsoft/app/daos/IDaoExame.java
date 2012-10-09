@@ -5,7 +5,7 @@ import models.*;
 
 public interface IDaoExame {
 	public void criarExame(Exame exame);
-	public void apagarExame(Exame exame);
+	public void apagarExame(int ID);
 	public void editarExame(Exame exame);
 	public Exame buscarExame_ID(int ID);
 	public List<Exame> buscarExame_DataPrometida(String data);

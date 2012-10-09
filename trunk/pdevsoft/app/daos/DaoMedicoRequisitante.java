@@ -32,7 +32,7 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 		}
 	}
 
-	public void criarMedReq (MedicoReq medicoreq) {
+	public void criarMedicoReq (MedicoReq medicoreq) {
 
 		try {
 		
@@ -47,10 +47,10 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 		}
 	}
 	
-	public void apagarMedReq (MedicoReq medicoreq) {
+	public void apagarMedicoReq (int CRMR) {
 
 		String apagar_medico = "DELETE FROM MedicoReq WHERE CRMR = "
-				+ medicoreq.CRMR + ";";
+				+ CRMR + ";";
 		try {
 			conectar();
 			comando.executeUpdate(apagar_medico);
@@ -59,7 +59,7 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 		}
 	}
 	
-	public void editarMedReq (MedicoReq medicoreq) {//AJEITAR O UPDATE AQUI E EM MedicoReq
+	public void editarMedicoReq (MedicoReq medicoreq) {//AJEITAR O UPDATE AQUI E EM MedicoReq
 
 		String apagar_medico = "UPDATE FROM MedicoReq WHERE CRMR = "
 				+ medicoreq.CRMR + ";";
@@ -83,7 +83,7 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 			
 			while (result.next()) {
 				MedicoReq le = new MedicoReq();
-				le.setCRMR(result.getInt("CRM"));
+				le.setCRMR(result.getInt("CRMR"));
 				le.setNome(result.getString("nome"));
 				le.setEmail(result.getString("email"));
 				le.setTelefone(result.getString("telefone"));

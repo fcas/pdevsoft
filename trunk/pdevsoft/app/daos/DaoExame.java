@@ -80,10 +80,10 @@ public class DaoExame implements IDaoExame {
 		}
 	}
 	
-	public void apagarExame(Exame exame) {
+	public void apagarExame(int ID) {
 		
 		String remove_exame = "DELETE FROM ExameLaudo WHERE ID = "
-				+ exame.ID + ";";
+				+ ID + ";";
 		try {	
 			conectar();
 			comando.executeUpdate(remove_exame);

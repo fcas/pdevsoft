@@ -36,12 +36,12 @@ public class ControllerPaciente extends Controller {
         } 
     } 
  
-    public static void apagarPaciente(Paciente paciente) { 
+    public static void apagarPaciente(String ID) { 
          
-        if (paciente.ID != 0) { 
-            if (daoPaciente.buscarPaciente(paciente.ID) != null) { 
-                daoPaciente.apagarPaciente(paciente); 
-                showPaciente(); 
+        if (Integer.parseInt(ID) != 0) { 
+            if (daoPaciente.buscarPaciente(Integer.parseInt(ID)) != null) { 
+                daoPaciente.apagarPaciente(Integer.parseInt(ID)); 
+                render(); 
             } else { 
                 Erro(); 
             }     
