@@ -136,6 +136,10 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
+	public static void showEditarExame() {
+		render();
+	}
+	
 	public static void Erro() {
 		render();
 	}
