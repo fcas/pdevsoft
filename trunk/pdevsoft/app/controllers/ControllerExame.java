@@ -31,7 +31,6 @@ public class ControllerExame extends Controller {
 		//porque Exame tem as chaves estrangeiras deles, então é necessário pra fazer a verificação
 		this.daoExame = daoExame;
 		this.daoPaciente = daoPaciente;
-		this.daoExame = daoExame;
 		this.daoMedLab = daoMedLab;
 		this.daoMedReq = daoMedReq;
 	}
@@ -80,9 +79,14 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void buscarExame_DataPrometida(String data) {
-		List<Exame> list_exame = new ArrayList<Exame>();
-		list_exame = daoExame.buscarExame_DataPrometida(data);
-		render(list_exame);
+		//List<Exame> list_exame = new ArrayList<Exame>();
+		System.out.println("PROCURANDO POR " + data);
+		List<Exame> list_exame = daoExame.buscarExame_DataPrometida(data);
+		if (list_exame != null) {
+			render(list_exame);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void buscarExame_Situacao(String situacao) {
@@ -93,9 +97,8 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void buscarExame_ID(String ID) {
-		Exame exame = new Exame();
-		exame = daoExame.buscarExame_ID(Integer.parseInt(ID));
-		System.out.println(exame.);
+		//Exame exame = new Exame();
+		Exame exame = daoExame.buscarExame_ID(Integer.parseInt(ID));
 		render(exame);
 	}
 	
@@ -109,7 +112,7 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
-	public static void showExame_ID() {
+	public static void showBuscarExame_ID() {
 		render();
 	}
 	
@@ -121,11 +124,11 @@ public class ControllerExame extends Controller {
 //		render();
 //	}
 	
-	public static void showExame_Situacao() {
+	public static void showBuscarExame_Situacao() {
 		render();
 	}
 	
-	public static void showExame_DataPrometida() {
+	public static void showBuscarExame_DataPrometida() {
 		render();
 	}
 	

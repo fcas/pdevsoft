@@ -32,9 +32,7 @@ public class DaoExame implements IDaoExame {
 	}
 
 	public void criarExame (Exame exame) {
-		
-		try {
-		
+	
 			String insert_exame = "INSERT INTO ExameLaudo VALUES ("
 				+ exame.ID + "," 
 				+ exame.ID_material + ",'" 
@@ -48,7 +46,8 @@ public class DaoExame implements IDaoExame {
 				+ exame.Analise_macro + "','"
 				+ exame.Analise_micro + "','"
 				+ exame.observacoes + "')";			
-			
+		try {
+					
 			conectar();
 			comando.executeUpdate(insert_exame);
 	
@@ -102,6 +101,7 @@ public class DaoExame implements IDaoExame {
 		try {
 			result = comando
 					.executeQuery("SELECT * FROM ExameLaudo ORDER BY dataentrega");
+			
 			while (result.next()) {
 				Exame le = new Exame();
 				le.setID(result.getInt("ID"));
@@ -135,8 +135,8 @@ public class DaoExame implements IDaoExame {
 		try {
 			conectar();
 			result = comando.executeQuery("SELECT * FROM ExameLaudo WHERE dataentrega = "
-							+ data);
-
+							+ data+";");
+			System.out.println("FIZ A CONSULTA DE DATA");
 		
 			while (result.next()) {
 				Exame le = new Exame();
@@ -222,6 +222,7 @@ public class DaoExame implements IDaoExame {
 				le.setAnalise_macro(result.getString("analise_macro"));
 				le.setAnalise_micro(result.getString("analise_micro"));
 				le.setObservacoes(result.getString("observacoes"));
+				System.out.println("ID SETADO = "+le.getID());
 			} else {
 				return null;
 			}

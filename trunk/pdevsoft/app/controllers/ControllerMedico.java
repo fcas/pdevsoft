@@ -78,13 +78,21 @@ public class ControllerMedico extends Controller {
 	public static void listarMedicosLab() {
 		List<MedicoLab> listaMedLab = new ArrayList<MedicoLab>();
 		listaMedLab = daoMedLab.listarMedicosLab();
-		render(listaMedLab);
+		if (listaMedLab != null) {
+			render(listaMedLab);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void buscarMedicoLab(String CRML) {
 		MedicoLab medLab = new MedicoLab();
 		medLab = daoMedLab.buscarMedicoLab(Integer.parseInt(CRML));
-		render(medLab);
+		if (medLab != null) {
+			render(medLab);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void criarMedicoReq (MedicoReq medReq) {
@@ -133,13 +141,22 @@ public class ControllerMedico extends Controller {
 	public static void listarMedicosReq() {
 		List<MedicoReq> listaMedReq = new ArrayList<MedicoReq>();
 		listaMedReq = daoMedReq.listarMedicosReq();
-		render(listaMedReq);
+		if (listaMedReq != null) {
+			render(listaMedReq);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void buscarMedicoReq(String CRMR) {
 		MedicoReq medReq = new MedicoReq();
+		System.out.println("CRMR A SER BUSCADO = " + CRMR);
 		medReq = daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR));
-		render(medReq);
+		if (medReq != null) {
+			render(medReq);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void showMedico() {
