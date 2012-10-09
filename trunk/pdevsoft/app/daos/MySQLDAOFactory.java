@@ -6,35 +6,31 @@ import java.sql.SQLException;
 
 public class MySQLDAOFactory extends DAOFactory {
 
-//	public static final int MYSQL = 0;
-//	private static final String MySQLDriver = "com.mysql.jdbc.Driver";
-//
-//	public Connection conexao(String url, String nome, String senha,
-//			int banco) throws ClassNotFoundException, SQLException {
-//		
-//		switch (banco) {
-//			case MYSQL:
-//				Class.forName(MySQLDriver);
-//			break;
-//		}
-//		return DriverManager.getConnection(url, nome, senha);
-//	}
-	
-	public IDaoPaciente createDaoPaciente() {
-		return new DaoPaciente();
-	}
+	DaoExame daoExame;
+	DaoPaciente daoPaciente; 
+	DaoMedicoLaboratorio daoMedicoLaboratorio; 
+	DaoMedicoRequisitante daoMedicoRequisitante;
 
-	public IDaoExame createDaoExame() {
-		return new DaoExame();
+	public DaoMedicoRequisitante createDaoMedicoRequisitante() {
+		daoMedicoRequisitante = new DaoMedicoRequisitante();
+		return daoMedicoRequisitante;
 	}
 	
-	public IDaoMedLab createDaoMedicoLaboratorio() {
-		return new DaoMedicoLaboratorio();
+	public DaoExame createDaoExame() {
+		daoExame = new DaoExame();
+		return daoExame;
 	}
 	
-	public IDaoMedReq createDaoMedicoRequisitante() {
-		return new DaoMedicoRequisitante();
+	public DaoPaciente createDaoPaciente() {
+		daoPaciente = new DaoPaciente();
+		return daoPaciente;
 	}
+	
+	public DaoMedicoLaboratorio createDaoMedicoLaboratorio() {
+		daoMedicoLaboratorio = new DaoMedicoLaboratorio();
+		return daoMedicoLaboratorio;
+	}
+	
 	
 //	public IDaoUsuario createDaoUsuario() {
 //		return new DaoUsuario();
