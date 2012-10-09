@@ -82,7 +82,6 @@ public class DaoPaciente implements IDaoPaciente {
 	}
 
 	public Paciente buscarPaciente(int ID) {
-		System.out.println("ENTREI AQUIIIIIIIIII");
 		ResultSet result = null;
 		Paciente le = new Paciente();
 		

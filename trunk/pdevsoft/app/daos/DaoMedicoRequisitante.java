@@ -59,9 +59,9 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 		}
 	}
 	
-	public void editarMedReq (MedicoReq medicoreq) {//AJEITAR O UPDATE AQUI E EM MEDICOLAB
+	public void editarMedReq (MedicoReq medicoreq) {//AJEITAR O UPDATE AQUI E EM MedicoReq
 
-		String apagar_medico = "UPDATE FROM MedicoLab WHERE CRMR = "
+		String apagar_medico = "UPDATE FROM MedicoReq WHERE CRMR = "
 				+ medicoreq.CRMR + ";";
 		try {
 			conectar();
@@ -72,12 +72,54 @@ public class DaoMedicoRequisitante implements IDaoMedReq {
 	}
 	
 	public List<MedicoReq> listarMedicosReq() {
-		return null;
+		
+		conectar();
+		List<MedicoReq> list_medreq = new ArrayList<MedicoReq>();
+		ResultSet result;
+
+		try {
+			result = comando
+					.executeQuery("SELECT * FROM MedicoReq;");
+			
+			while (result.next()) {
+				MedicoReq le = new MedicoReq();
+				le.setCRMR(result.getInt("CRM"));
+				le.setNome(result.getString("nome"));
+				le.setEmail(result.getString("email"));
+				le.setTelefone(result.getString("telefone"));
+				list_medreq.add(le);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list_medreq;
 	}
 	
 	public MedicoReq buscarMedicoReq(int CRMR) {
-		String buscar_medico = "";
-		return null;
+		
+		ResultSet result = null;
+		MedicoReq le = new MedicoReq();
+		
+		try {
+			conectar();
+			result = comando.executeQuery("SELECT * FROM MedicoReq WHERE CRMR = "
+					+ CRMR + ";");
+			
+			if (result.next()) { 
+				le.setCRMR(result.getInt("CRMR"));
+				le.setNome(result.getString("nome"));
+				le.setEmail(result.getString("email"));
+				le.setTelefone(result.getString("telefone"));
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return le;
 	}
 	
 }

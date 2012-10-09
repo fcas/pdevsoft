@@ -77,11 +77,54 @@ public class DaoMedicoLaboratorio implements IDaoMedLab {
 	}
 	
 	public List<MedicoLab> listarMedicosLab() {
-		return null;
+		
+		conectar();
+		List<MedicoLab> list_medlab = new ArrayList<MedicoLab>();
+		ResultSet result;
+
+		try {
+			result = comando
+					.executeQuery("SELECT * FROM MedicoLab;");
+			
+			while (result.next()) {
+				MedicoLab le = new MedicoLab();
+				le.setCRML(result.getInt("CRM"));
+				le.setNome(result.getString("nome"));
+				le.setEmail(result.getString("email"));
+				le.setTelefone(result.getString("telefone"));
+				list_medlab.add(le);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list_medlab;
 	}
 	
 	public MedicoLab buscarMedicoLab(int CRML) {
-		return null;
+		
+		ResultSet result = null;
+		MedicoLab le = new MedicoLab();
+		
+		try {
+			conectar();
+			result = comando.executeQuery("SELECT * FROM MedicoLab WHERE CRML = "
+					+ CRML + ";");
+			
+			if (result.next()) { 
+				le.setCRML(result.getInt("CRML"));
+				le.setNome(result.getString("nome"));
+				le.setEmail(result.getString("email"));
+				le.setTelefone(result.getString("telefone"));
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return le;
 	}
 	
 }
