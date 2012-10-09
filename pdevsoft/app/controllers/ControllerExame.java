@@ -15,14 +15,8 @@ import models.*;
 import daos.*;
 
 public class ControllerExame extends Controller {
-	/*Meninos, a classe controller paciente tá certinha, então as outras praticamente vão seguir
-	 * o mesmo modelo. Nessas classes de controller, um probleminha que tá.
-	 * 
-	 * 
-	 * FALTA OS HTML DE EDITAR E APAGAR
-	 * 
-	 */
-	public static IDaoExame daoExame;//o controller só fala com a interface, por isso que tá declarado aqui
+
+	public static IDaoExame daoExame;
 	public static IDaoPaciente daoPaciente;
 	public static IDaoMedLab daoMedLab;
 	public static IDaoMedReq daoMedReq;
@@ -42,7 +36,7 @@ public class ControllerExame extends Controller {
 			if ((daoExame.buscarExame_ID(exame.ID) == null) && (daoPaciente.buscarPaciente(exame.ID_paciente) != null) 
 					&& (daoMedLab.buscarMedicoLab(exame.CRML) != null) && (daoMedReq.buscarMedicoReq(exame.CRMR) != null)) {
 				daoExame.criarExame(exame);
-				showExame();//esse showExame() eu botei mas a gente tem que ajeitar as coisas do HTML ainda, então provavelmente vai mudar.
+				showExame();
 			} else {
 				Erro();
 			}	
@@ -79,8 +73,6 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void buscarExame_DataPrometida(String data) {
-		//List<Exame> list_exame = new ArrayList<Exame>();
-		System.out.println("PROCURANDO POR " + data);
 		List<Exame> list_exame = daoExame.buscarExame_DataPrometida(data);
 		if (list_exame != null) {
 			render(list_exame);
@@ -90,22 +82,30 @@ public class ControllerExame extends Controller {
 	}
 	
 	public static void buscarExame_Situacao(String situacao) {
-		//System.out.println("SITUACAO = " + situacao);
-		List<Exame> list_exame = new ArrayList<Exame>();
-		list_exame = daoExame.buscarExame_Situacao(situacao);
-		render(list_exame);
+		List<Exame> list_exame = daoExame.buscarExame_Situacao(situacao);
+		if (list_exame != null) {
+			render(list_exame);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void buscarExame_ID(String ID) {
-		//Exame exame = new Exame();
 		Exame exame = daoExame.buscarExame_ID(Integer.parseInt(ID));
-		render(exame);
+		if (exame != null) {
+			render(exame);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void buscarUltimosExames() {
-		List<Exame> listaExames = new ArrayList<Exame>();
-		listaExames = daoExame.buscarUltimosExames();
-		render(listaExames);
+		List<Exame> list_exame = daoExame.buscarUltimosExames();
+		if (list_exame != null) {
+			render(list_exame);
+		} else {
+			Erro();
+		}
 	}
 	
 	public static void showExame() {

@@ -21,7 +21,6 @@ public class ControllerMedico extends Controller {
 	 * as mesmas coisas que se verifica em CRIAR, só que nesse caso
 	 * verificar que o ID/CRM não foi alterado. As outras coisas podem ser alteradas
 	 desde que mantenha a consistencia de chave estrangeira (no caso de Exame).
-	 Em nenhum dos controller eu implementei essa verificação, então FACAM ISSO!!
 	 */
 	
 	/*Falta o método buscarMedPacienteID, após criá-lo, alterar nos htmls
@@ -76,8 +75,7 @@ public class ControllerMedico extends Controller {
 	}
 
 	public static void listarMedicosLab() {
-		List<MedicoLab> listaMedLab = new ArrayList<MedicoLab>();
-		listaMedLab = daoMedLab.listarMedicosLab();
+		List<MedicoLab> listaMedLab = daoMedLab.listarMedicosLab();
 		if (listaMedLab != null) {
 			render(listaMedLab);
 		} else {
@@ -86,8 +84,7 @@ public class ControllerMedico extends Controller {
 	}
 	
 	public static void buscarMedicoLab(String CRML) {
-		MedicoLab medLab = new MedicoLab();
-		medLab = daoMedLab.buscarMedicoLab(Integer.parseInt(CRML));
+		MedicoLab medLab = daoMedLab.buscarMedicoLab(Integer.parseInt(CRML));
 		if (medLab != null) {
 			render(medLab);
 		} else {
@@ -139,8 +136,7 @@ public class ControllerMedico extends Controller {
 	}
 
 	public static void listarMedicosReq() {
-		List<MedicoReq> listaMedReq = new ArrayList<MedicoReq>();
-		listaMedReq = daoMedReq.listarMedicosReq();
+		List<MedicoReq> listaMedReq = daoMedReq.listarMedicosReq();
 		if (listaMedReq != null) {
 			render(listaMedReq);
 		} else {
@@ -149,9 +145,8 @@ public class ControllerMedico extends Controller {
 	}
 	
 	public static void buscarMedicoReq(String CRMR) {
-		MedicoReq medReq = new MedicoReq();
-		System.out.println("CRMR A SER BUSCADO = " + CRMR);
-		medReq = daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR));
+		//System.out.println("CRMR A SER BUSCADO = " + CRMR);
+		MedicoReq medReq = daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR));
 		if (medReq != null) {
 			render(medReq);
 		} else {
