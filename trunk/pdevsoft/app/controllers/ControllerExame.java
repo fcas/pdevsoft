@@ -136,7 +136,7 @@ public class ControllerExame extends Controller {
 		render();
 	}
 	
-	public static void showEditarExame() {
+	public static void showEditarExame(){
 		render();
 	}
 	
