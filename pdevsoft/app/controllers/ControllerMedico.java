@@ -21,9 +21,7 @@ public class ControllerMedico extends Controller {
 	 * as mesmas coisas que se verifica em CRIAR, só que nesse caso
 	 * verificar que o ID/CRM não foi alterado. As outras coisas podem ser alteradas
 	 desde que mantenha a consistencia de chave estrangeira (no caso de Exame).
-	 */
-	
-	/*Falta o método buscarMedPacienteID, após criá-lo, alterar nos htmls
+	 em APAGAR a mesma coisa. não pode apagar o que seja chave estrangeira de outra.
 	 */
 	
 	public ControllerMedico(IDaoMedLab daoMedLab, IDaoMedReq daoMedReq) {
@@ -34,9 +32,9 @@ public class ControllerMedico extends Controller {
 	public static void criarMedicoLab (MedicoLab medLab) {
 		
 		if (medLab.CRML != 0) {
-		
+			System.out.println("CRML === " + medLab.CRML);
 			if (daoMedLab.buscarMedicoLab(medLab.CRML) == null) {
-				daoMedLab.criarMedLab(medLab);
+				daoMedLab.criarMedicoLab(medLab);
 				showMedico();
 			} else {
 				Erro();
@@ -46,12 +44,12 @@ public class ControllerMedico extends Controller {
 		}
 	}
 
-	public static void apagarMedicoLab (MedicoLab medLab) {
-		if (medLab.CRML != 0) {
+	public static void apagarMedicoLab (String CRML) {
+		if (Integer.parseInt(CRML) != 0) {
 			
-			if (daoMedLab.buscarMedicoLab(medLab.CRML) != null) {
-				daoMedLab.apagarMedLab(medLab);
-				showMedico();
+			if (daoMedLab.buscarMedicoLab(Integer.parseInt(CRML)) != null) {
+				daoMedLab.apagarMedicoLab(Integer.parseInt(CRML));
+				render();
 			} else {
 				Erro();
 			}	
@@ -64,7 +62,7 @@ public class ControllerMedico extends Controller {
 		if (medLab.CRML != 0) {
 			
 			if (daoMedLab.buscarMedicoLab(medLab.CRML) != null) {
-				daoMedLab.editarMedLab(medLab);
+				daoMedLab.editarMedicoLab(medLab);
 				showMedico();
 			} else {
 				Erro();
@@ -95,9 +93,9 @@ public class ControllerMedico extends Controller {
 	public static void criarMedicoReq (MedicoReq medReq) {
 
 		if (medReq.CRMR != 0) {
-		
+			System.out.println("CRMR === " + medReq.CRMR);
 			if (daoMedReq.buscarMedicoReq(medReq.CRMR) == null) {
-				daoMedReq.criarMedReq(medReq);
+				daoMedReq.criarMedicoReq(medReq);
 				showMedico();
 			} else {
 				Erro();
@@ -107,11 +105,11 @@ public class ControllerMedico extends Controller {
 		}
 	}
 
-	public static void apagarMedicoReq (MedicoReq medReq) {
-		if (medReq.CRMR != 0) {
+	public static void apagarMedicoReq (String CRMR) {
+		if (Integer.parseInt(CRMR) != 0) {//VERIFICAR ISSO
 			
-			if (daoMedReq.buscarMedicoReq(medReq.CRMR) != null) {
-				daoMedReq.apagarMedReq(medReq);
+			if (daoMedReq.buscarMedicoReq(Integer.parseInt(CRMR)) != null) {
+				daoMedReq.apagarMedicoReq(Integer.parseInt(CRMR));
 				showMedico();
 			} else {
 				Erro();
@@ -125,7 +123,7 @@ public class ControllerMedico extends Controller {
 		if (medReq.CRMR != 0) {
 			
 			if (daoMedReq.buscarMedicoReq(medReq.CRMR) != null) {
-				daoMedReq.editarMedReq(medReq);
+				daoMedReq.editarMedicoReq(medReq);
 				showMedico();
 			} else {
 				Erro();

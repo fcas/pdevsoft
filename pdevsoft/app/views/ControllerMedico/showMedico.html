@@ -1,6 +1,5 @@
 #{extends 'main.html' /}
 <link rel="stylesheet" href="@{'/public/stylesheets/style.css'}">
-#{/set}
 
 <div id="header">
 <h1 id="m1">MedLab</h1>
@@ -18,13 +17,13 @@
 </div>
 
 <div id="content">
-
+<div id="principal">
 <h1>Médico cadastrado com sucesso!</h1>
 
 
 <input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"> <p>
 </p>
-
+</div>
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
 <li><a like href="http://localhost:9000/ControllerMedico/showCriarMedicoReq"> Cadastrar Médico Requisitante </a></li></br>

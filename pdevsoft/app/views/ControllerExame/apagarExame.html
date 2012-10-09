@@ -1,8 +1,6 @@
 <!--#{extends 'main.html' /}
 #{set title:'Remover Paciente' /}
 -->
-<html>
-
 <head>
 <link rel="stylesheet"media="screen" href="style.css">
 <script type="text/javascript" src="jquery.js"></script> 
@@ -28,40 +26,15 @@ CONTENT="text/html; charset=UTF-8">
 </div>
 
 
-
-<body>
 <div id="content">
-	
 	<div id="principal">
-	<h1>Médico Requisitante</h1>
-	#{list items: medReq, as : 'p'}
-		<table>
-		<tr>
-			<td><label>CRM: </label></td>
-			<td>${p.CRMR}</td>
-		</tr><tr>
-			<td><label>Nome: </label></td>
-			<td>${p.nome}</td>
-		</tr><tr>
-			<td><label>Email: </label></td>
-			<td>${p.email}</td>
-		</tr><tr>
-			<td><label>Telefone: </label></td>
-			<td>${p.telefone}</td>
-		</tr>
-		#{/list}
-		<tr><td></td><td></td></td></tr>
-		<tr><td></td><td></td></td></tr>
-		<tr><td></td><td></td></td></tr>
-		<tr>
-			<td></td><td><input type="button" value="Voltar" onClick="location. href='http://localhost:9000'"></td>
-			
-		</tr>
+</br> </br> 
+		<h1>Apagar paciente</h1>
 		
-		</table>
- <p>
+ <p> Exame apagado com sucesso!
 </form>
 </div>
+
 
 <div id="menu2">
 <ul id="interno"><li><a href="http://localhost:9000/ControllerMedico/showCriarMedicoLab"> Cadastrar Médico de Laboratório </a></li></br>
@@ -92,12 +65,13 @@ CONTENT="text/html; charset=UTF-8">
 <li><a like href="http://localhost:9000/ControllerExame/buscarUltimosExames"> Visualizar os ultimos exames cadastrados </a></li></br>
 </ul>
 <ul id="interno5"><li><a href="#">Quem somos nós</a></li></br>
-			<li><a href="#">Localização</a></li>
-			</ul>
+<li><a href="#">Localização</a></li>
+</ul>
 </div>
 
-</body>
+
+</div>
+
 <div id="footer">
  © Copyright AndFeLa 2012
 </div>
-</html>
